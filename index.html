@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siqueira &amp; Neves Advogados | Governador Valadares - MG</title>
+<meta name="description" content="Escritório de advocacia com 10 anos de atuação em Governador Valadares. Direito de Família, Trabalhista, Previdenciário, Empresarial, indenizações Samarco/Rio Doce e mais.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* cor — navy + vinho do logo real, dourado como acento funcional (usado nas próprias peças pagas deles) */
+    --primaria: #17234b;
+    --primaria-clara: #223262;
+    --acento: #8a1730;
+    --destaque: #c9a24d;
+    --fundo: #0d1626;
+    --fundo-alt: #121f3c;
+    --texto: #f3f5f9;
+    --texto-suave: color-mix(in srgb, var(--texto) 62%, var(--fundo));
+    --branco: #ffffff;
+
+    --f-display: clamp(2.3rem, 5vw + 1rem, 4.2rem);
+    --f-titulo: clamp(1.6rem, 2.4vw + .5rem, 2.4rem);
+    --f-corpo: clamp(1rem, .3vw + .9rem, 1.15rem);
+
+    --e-1: 8px; --e-2: 16px; --e-3: 24px; --e-4: 32px; --e-6: 48px; --e-8: 64px; --e-12: 96px;
+    --secao: clamp(64px, 9vw, 130px);
+
+    --raio: 14px;
+    --sombra: 0 12px 40px rgb(0 0 0 / .35);
+    --dur: .35s; --curva: cubic-bezier(.22, 1, .36, 1);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--fundo); color: var(--texto);
+    font-family: 'Inter', sans-serif; font-size: var(--f-corpo); line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Playfair Display', serif; margin: 0 0 var(--e-3); color: var(--branco); font-weight: 700; }
+  p { margin: 0 0 var(--e-3); }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 var(--e-4); }
+  section { padding: var(--secao) 0; position: relative; }
+
+  .section-title { font-size: var(--f-titulo); line-height: 1.15; }
+  .eyebrow {
+    display: inline-block; font-family: 'Inter', sans-serif; font-weight: 600;
+    font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--destaque); margin-bottom: var(--e-2);
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: var(--e-1);
+    background: var(--destaque); color: var(--fundo);
+    padding: 16px 28px; border-radius: var(--raio); border: none;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem;
+    text-decoration: none; cursor: pointer;
+    box-shadow: var(--sombra);
+    transition: transform var(--dur) var(--curva), filter var(--dur) var(--curva);
+  }
+  .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+  .btn.ghost { background: transparent; color: var(--branco); border: 1.5px solid rgb(255 255 255 / .35); box-shadow: none; }
+  .btn.ghost:hover { background: rgb(255 255 255 / .08); }
+
+  /* ---------- NAV ---------- */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: color-mix(in srgb, var(--fundo) 85%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgb(255 255 255 / .08);
+  }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 14px var(--e-4); max-width: 1140px; margin: 0 auto; }
+  .logo img { height: 34px; width: auto; }
+  .nav-links { display: flex; gap: var(--e-4); list-style: none; margin: 0; padding: 0; }
+  .nav-links a { text-decoration: none; font-weight: 500; font-size: .92rem; color: var(--texto-suave); }
+  .nav-cta { display: none; }
+  @media (min-width: 860px) { .nav-cta { display: inline-flex; padding: 10px 20px; font-size: .88rem; } }
+  @media (max-width: 859px) { .nav-links { display: none; } }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100svh; display: flex; align-items: center;
+    padding-top: 130px; padding-bottom: var(--e-8);
+    position: relative; overflow: hidden;
+    background: radial-gradient(circle at 80% 20%, var(--fundo-alt), var(--fundo) 60%);
+  }
+  .hero-mark {
+    position: absolute; top: 50%; right: -8%; width: min(720px, 60vw); aspect-ratio: 836/900;
+    transform: translateY(-50%); opacity: .16; pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 10px; margin-bottom: var(--e-3);
+    background: rgb(255 255 255 / .06); border: 1px solid rgb(255 255 255 / .16);
+    padding: 8px 16px; border-radius: 999px; font-size: .85rem; font-weight: 600;
+    color: var(--branco);
+  }
+  .hero-badge .estrela { color: var(--destaque); }
+  .hero h1 { font-size: var(--f-display); line-height: 1.08; margin-bottom: var(--e-3); }
+  .hero h1 em { color: var(--destaque); font-style: normal; }
+  .hero p.lead { font-size: 1.2rem; max-width: 560px; color: var(--texto-suave); }
+  .hero-ctas { display: flex; gap: var(--e-2); flex-wrap: wrap; margin-top: var(--e-4); }
+
+  /* ---------- FAIXA DE AUTORIDADE ---------- */
+  .autoridade { background: var(--fundo-alt); padding: var(--e-6) 0; border-top: 1px solid rgb(255 255 255 / .06); border-bottom: 1px solid rgb(255 255 255 / .06); }
+  .autoridade .container { display: grid; gap: var(--e-4); grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); text-align: center; }
+  .autoridade-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: var(--destaque); line-height: 1; margin-bottom: 6px; }
+  .autoridade-label { font-size: .85rem; color: var(--texto-suave); }
+
+  /* ---------- ÁREAS (scroll horizontal pinado) ---------- */
+  .areas-wrap { background: var(--fundo); overflow: hidden; }
+  .areas-head { text-align: center; max-width: 640px; margin: 0 auto var(--e-8); }
+  .cena-areas { position: relative; }
+  .trilho {
+    display: flex; gap: var(--e-3); width: max-content; padding: 0 var(--e-4);
+  }
+  .area-card {
+    background: var(--fundo-alt); border: 1px solid rgb(255 255 255 / .08);
+    border-radius: var(--raio); padding: var(--e-4); width: 280px; flex: none;
+    border-top: 3px solid var(--acento);
+  }
+  .area-card h3 { font-size: 1.05rem; margin-bottom: var(--e-1); }
+  .area-card p { color: var(--texto-suave); font-size: .92rem; margin: 0; }
+  /* mobile: vira scroll horizontal nativo, sem pin */
+  @media (max-width: 859px) {
+    .trilho { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: var(--e-2); }
+    .area-card { scroll-snap-align: start; }
+  }
+
+  /* ---------- SAMARCO / RIO DOCE ---------- */
+  .samarco { background: linear-gradient(155deg, var(--acento), #5c0f21); position: relative; }
+  .samarco .container { max-width: 760px; text-align: center; }
+  .samarco .eyebrow { color: rgb(255 255 255 / .85); }
+  .samarco h2 { color: var(--branco); }
+  .samarco p { color: rgb(255 255 255 / .88); font-size: 1.1rem; }
+
+  /* ---------- DIFERENCIAIS ---------- */
+  .diferenciais { background: var(--fundo-alt); }
+  .dif-grid { display: grid; gap: var(--e-3); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .dif-card { background: var(--fundo); border: 1px solid rgb(255 255 255 / .08); border-radius: var(--raio); padding: var(--e-4); }
+  .dif-card h3 { font-size: 1.1rem; margin-bottom: var(--e-1); }
+  .dif-card p { color: var(--texto-suave); margin: 0; font-size: .95rem; }
+
+  /* ---------- SÓCIOS ---------- */
+  .socios { background: var(--fundo); }
+  .socios-grid { display: grid; gap: var(--e-4); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .socio-card {
+    background: var(--fundo-alt); border-radius: var(--raio); padding: var(--e-4);
+    border: 1px solid rgb(255 255 255 / .08); text-align: center;
+  }
+  .socio-avatar {
+    width: 96px; height: 96px; border-radius: 50%; margin: 0 auto var(--e-3);
+    background: linear-gradient(155deg, var(--primaria-clara), var(--acento));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--branco);
+  }
+  .socio-card h3 { font-size: 1.15rem; margin-bottom: 4px; }
+  .socio-card .socio-role { color: var(--destaque); font-size: .85rem; font-weight: 600; margin-bottom: var(--e-2); }
+  .socio-card p { color: var(--texto-suave); font-size: .92rem; margin: 0; }
+
+  /* ---------- PROVA ---------- */
+  .prova { background: var(--fundo-alt); }
+  .prova-rating { display: flex; align-items: center; gap: var(--e-2); margin-bottom: var(--e-6); flex-wrap: wrap; }
+  .prova-nota { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--destaque); line-height: 1; }
+  .prova-estrelas { color: var(--destaque); font-size: 1.3rem; letter-spacing: 2px; }
+  .prova-grid { display: grid; gap: var(--e-3); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .depoimento {
+    background: var(--fundo); border: 1px solid rgb(255 255 255 / .08); border-radius: var(--raio); padding: var(--e-4);
+    font-style: italic; color: var(--texto);
+  }
+  .depoimento::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--destaque); line-height: 0; display: block; margin-bottom: var(--e-2); font-style: normal; }
+  .depoimento-autor { margin-top: var(--e-2); font-style: normal; font-weight: 600; font-size: .9rem; color: var(--texto-suave); }
+
+  /* ---------- CTA FINAL ---------- */
+  .cta-final { background: linear-gradient(160deg, var(--fundo-alt), var(--primaria)); text-align: center; }
+  .cta-final p { color: var(--texto-suave); max-width: 520px; margin-left: auto; margin-right: auto; }
+
+  /* ---------- FOOTER ---------- */
+  footer { background: var(--fundo-alt); color: var(--texto-suave); padding: var(--e-6) 0 var(--e-4); font-size: .9rem; border-top: 1px solid rgb(255 255 255 / .08); }
+  .footer-grid { display: grid; gap: var(--e-4); grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: var(--e-4); }
+  footer h4 { color: var(--branco); font-family: 'Inter', sans-serif; font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: var(--e-2); }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--destaque); }
+  .footer-bottom { border-top: 1px solid rgb(255 255 255 / .08); padding-top: var(--e-3); text-align: center; font-size: .8rem; opacity: .7; }
+
+  /* ---------- WHATSAPP FLUTUANTE ---------- */
+  .whats-float {
+    position: fixed; bottom: 22px; right: 22px; z-index: 60;
+    background: #25D366; color: #fff; width: 58px; height: 58px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; text-decoration: none;
+    box-shadow: 0 8px 24px rgb(0 0 0 / .35);
+    transition: transform var(--dur) var(--curva);
+  }
+  .whats-float:hover { transform: scale(1.08); }
+  .whats-float::before, .whats-float::after {
+    content: ''; position: absolute; inset: 0; border-radius: 50%; background: #25D366; z-index: -1;
+    animation: whats-pulso 2.2s ease-out infinite;
+  }
+  .whats-float::after { animation-delay: 1.1s; }
+  @keyframes whats-pulso { 0% { opacity: .55; transform: scale(1); } 100% { opacity: 0; transform: scale(2.1); } }
+  @media (prefers-reduced-motion: reduce) { .whats-float::before, .whats-float::after { animation: none; opacity: 0; } }
+
+  [data-reveal] { will-change: transform, opacity; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#topo" class="logo"><img src="img/logo-white.webp" alt="Siqueira &amp; Neves Advogados" width="700" height="248"></a>
+    <ul class="nav-links">
+      <li><a href="#areas">Áreas</a></li>
+      <li><a href="#samarco">Samarco/Rio Doce</a></li>
+      <li><a href="#socios">Sócios</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+    </ul>
+    <a href="https://api.whatsapp.com/send?phone=553330224128" class="btn nav-cta" target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </nav>
+</header>
+
+<main id="topo">
+
+  <!-- HERÓI -->
+  <section class="hero">
+    <img class="hero-mark" src="img/mark.webp" alt="" data-parallax aria-hidden="true">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge"><span class="estrela">★★★★★</span> 5,0 no Google · 10 anos de atuação</div>
+        <h1 data-reveal>Fazendo um mundo mais justo há <em>10 anos</em>.</h1>
+        <p class="lead" data-reveal>Escritório full-service em Governador Valadares — Direito de Família, Trabalhista, Previdenciário, Empresarial e indenizações Samarco/Rio Doce. Atendimento digital ou presencial, com os sócios Elias Siqueira Jr. e Mardson Neves.</p>
+        <div class="hero-ctas" data-reveal>
+          <a href="https://api.whatsapp.com/send?phone=553330224128" class="btn" target="_blank" rel="noopener">Falar com um especialista</a>
+          <a href="#areas" class="btn ghost">Ver áreas de atuação</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAIXA DE AUTORIDADE -->
+  <section class="autoridade">
+    <div class="container">
+      <div data-reveal><div class="autoridade-num">10</div><div class="autoridade-label">anos de atuação</div></div>
+      <div data-reveal><div class="autoridade-num">12</div><div class="autoridade-label">áreas do direito</div></div>
+      <div data-reveal><div class="autoridade-num">5,0</div><div class="autoridade-label">nota no Google</div></div>
+      <div data-reveal><div class="autoridade-num">2</div><div class="autoridade-label">sócios à frente do escritório</div></div>
+    </div>
+  </section>
+
+  <!-- ÁREAS -->
+  <section class="areas-wrap" id="areas">
+    <div class="cena-areas" id="cena-areas">
+      <div class="container areas-head">
+        <span class="eyebrow">Áreas de atuação</span>
+        <h2 class="section-title">Onde o Siqueira &amp; Neves atua por você</h2>
+      </div>
+      <div class="trilho">
+        <div class="area-card"><h3>Direito de Família e Inventário</h3><p>Divórcio, guarda, pensão e inventário conduzidos com cuidado nos momentos mais delicados.</p></div>
+        <div class="area-card"><h3>Direito Trabalhista</h3><p>Defesa de direitos trabalhistas, para empregado ou empregador.</p></div>
+        <div class="area-card"><h3>Direito Previdenciário</h3><p>Aposentadoria, desaposentação e benefícios junto ao INSS.</p></div>
+        <div class="area-card"><h3>Direito Empresarial e Societário</h3><p>Assessoria preventiva e estratégica para empresários e sociedades.</p></div>
+        <div class="area-card"><h3>Direito do Consumidor</h3><p>Cobrança indevida, produto com defeito e relações de consumo em geral.</p></div>
+        <div class="area-card"><h3>Direito da Saúde e Direito Médico</h3><p>Questões com planos de saúde e responsabilidade médica.</p></div>
+        <div class="area-card"><h3>Direito Imobiliário</h3><p>Compra, venda, regularização e disputas envolvendo imóveis.</p></div>
+        <div class="area-card"><h3>Recuperação de Crédito</h3><p>Cobrança judicial e extrajudicial de valores devidos.</p></div>
+        <div class="area-card"><h3>Direito Bancário</h3><p>Revisão de contratos e questões com instituições financeiras.</p></div>
+        <div class="area-card"><h3>Direito do Trânsito</h3><p>Suspensão de CNH, multas e infrações de trânsito.</p></div>
+        <div class="area-card"><h3>Direito Administrativo</h3><p>Questões envolvendo servidores públicos e a administração pública.</p></div>
+        <div class="area-card"><h3>Indenizações Samarco/Rio Doce</h3><p>Atuação especializada em pedidos de indenização ligados ao desastre do Rio Doce.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMARCO -->
+  <section class="samarco" id="samarco">
+    <div class="container">
+      <span class="eyebrow">Especialização local</span>
+      <h2 class="section-title" data-reveal>Indenizações Samarco / Rio Doce</h2>
+      <p data-reveal>Atuamos junto a famílias e trabalhadores da região atingidos pelo desastre do Rio Doce, orientando sobre direito à indenização e acompanhando cada etapa do processo — do cadastro ao recebimento.</p>
+      <a href="https://api.whatsapp.com/send?phone=553330224128" class="btn ghost" target="_blank" rel="noopener" data-reveal>Falar sobre meu caso</a>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section class="diferenciais">
+    <div class="container">
+      <span class="eyebrow">Por que o Siqueira &amp; Neves</span>
+      <h2 class="section-title" data-reveal>Nossos diferenciais</h2>
+      <div class="dif-grid">
+        <div class="dif-card" data-reveal>
+          <h3>Atendimento personalizado</h3>
+          <p>Proximidade com o cliente, respeitando as peculiaridades de cada caso — não um processo a mais na pilha.</p>
+        </div>
+        <div class="dif-card" data-reveal>
+          <h3>Digital ou presencial</h3>
+          <p>Sede física em Governador Valadares, e atendimento 100% digital pra quem prefere resolver tudo pelo celular.</p>
+        </div>
+        <div class="dif-card" data-reveal>
+          <h3>Equipe especializada</h3>
+          <p>Sócios fundadores com anos de atuação nas mais diversas áreas do direito.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SÓCIOS -->
+  <section class="socios" id="socios">
+    <div class="container">
+      <span class="eyebrow">Quem cuida do seu caso</span>
+      <h2 class="section-title" data-reveal>Sócios fundadores</h2>
+      <div class="socios-grid">
+        <div class="socio-card" data-reveal>
+          <div class="socio-avatar">ES</div>
+          <h3>Elias Siqueira Jr.</h3>
+          <div class="socio-role">Sócio fundador</div>
+          <p>Advogado com ampla experiência, à frente das estratégias jurídicas do escritório em Governador Valadares.</p>
+        </div>
+        <div class="socio-card" data-reveal>
+          <div class="socio-avatar">MN</div>
+          <h3>Mardson Neves</h3>
+          <div class="socio-role">Sócio fundador</div>
+          <p>Advogado com ampla experiência, à frente das estratégias jurídicas do escritório em Governador Valadares.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROVA -->
+  <section class="prova" id="depoimentos">
+    <div class="container">
+      <div class="prova-rating">
+        <div class="prova-nota">5,0</div>
+        <div>
+          <div class="prova-estrelas">★★★★★</div>
+          <p style="margin:0; color:var(--texto-suave);">Avaliações no Google</p>
+        </div>
+      </div>
+      <div class="prova-grid">
+        <div class="depoimento" data-reveal>
+          Siqueira e Neves advogados representa um escritório de profissionais que tratam clientes com seriedade e compromisso e buscam solucionar os problemas/processos de maneira bem assertiva e competente.
+          <div class="depoimento-autor">— Daniele Dutra</div>
+        </div>
+        <div class="depoimento" data-reveal>
+          Excelentes advogados, tive o privilégio de poder contar com o trabalho deles. Profissionais pontuais com os seus prazos, valor justo, e excelente atendimento começando pela recepção. Indico a todos.
+          <div class="depoimento-autor">— Lucilene Alves de Souza Vargas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final">
+    <div class="container">
+      <h2 class="section-title" data-reveal>Precisa resolver algo com a Justiça?</h2>
+      <p data-reveal>Fala agora com o Siqueira &amp; Neves Advogados e entenda, sem compromisso, qual é o melhor caminho pro seu caso.</p>
+      <a href="https://api.whatsapp.com/send?phone=553330224128" class="btn" target="_blank" rel="noopener" data-reveal>Falar no WhatsApp</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Siqueira &amp; Neves Advogados</h4>
+        <p style="margin:0;">Governador Valadares - MG<br>10 anos de atuação</p>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <p style="margin:0;"><a href="https://api.whatsapp.com/send?phone=553330224128" target="_blank" rel="noopener">(33) 3022-4128 — WhatsApp</a></p>
+        <p style="margin:8px 0 0;"><a href="mailto:siqueiraeneves@hotmail.com">siqueiraeneves@hotmail.com</a></p>
+      </div>
+      <div>
+        <h4>Endereço</h4>
+        <p style="margin:0;">Av. Santos Dumont, 460-B<br>Lourdes, Gov. Valadares - MG, 35022-120</p>
+      </div>
+      <div>
+        <h4>Redes</h4>
+        <p style="margin:0;"><a href="https://www.instagram.com/siqueiraenevesadvogados/" target="_blank" rel="noopener">@siqueiraenevesadvogados</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Siqueira &amp; Neves Advogados. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<a href="https://api.whatsapp.com/send?phone=553330224128" class="whats-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 3.5a8.9 8.9 0 0 0-7.6 13.48L3.5 21l4.15-1.09a8.9 8.9 0 0 0 4.4 1.16h.01a8.9 8.9 0 0 0 8.9-8.9 8.86 8.86 0 0 0-2.86-6.35zm-5.55 13.7h-.01a7.4 7.4 0 0 1-3.77-1.03l-.27-.16-2.8.74.75-2.73-.18-.28a7.4 7.4 0 1 1 13.75-3.86 7.4 7.4 0 0 1-7.47 7.32zm4.06-5.54c-.22-.11-1.31-.65-1.51-.72-.2-.07-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.16-.48.05-.22-.11-.94-.35-1.79-1.11-.66-.59-1.11-1.32-1.24-1.54-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.2-.68-1.65-.18-.43-.36-.37-.5-.38-.13-.01-.28-.01-.43-.01a.83.83 0 0 0-.6.28c-.2.22-.79.77-.79 1.87 0 1.1.81 2.17.92 2.32.11.15 1.6 2.44 3.87 3.42.54.23.96.37 1.29.48.54.17 1.03.15 1.42.09.43-.06 1.31-.53 1.5-1.05.18-.51.18-.95.13-1.05-.05-.1-.2-.15-.42-.26z"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+  const mm = gsap.matchMedia();
+
+  mm.add(
+    { desktop: '(min-width: 860px)', calmo: '(prefers-reduced-motion: reduce)' },
+    (ctx) => {
+      const { calmo, desktop } = ctx.conditions;
+
+      if (calmo) {
+        gsap.utils.toArray('[data-reveal]').forEach((el) => {
+          gsap.from(el, { autoAlpha: 0, y: 12, duration: .5, ease: 'power1.out',
+            scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+        });
+        return;
+      }
+
+      const lenis = new Lenis();
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((t) => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      gsap.utils.toArray('[data-reveal]').forEach((el) => {
+        gsap.from(el, { y: 40, autoAlpha: 0, duration: .8, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+      });
+
+      gsap.from('.autoridade .container > *', { y: 24, autoAlpha: 0, duration: .6, stagger: .1, ease: 'power2.out',
+        scrollTrigger: { trigger: '.autoridade', start: 'top 80%', once: true } });
+
+      gsap.from('.dif-grid > *', { y: 32, autoAlpha: 0, duration: .6, stagger: .08, ease: 'power2.out',
+        scrollTrigger: { trigger: '.dif-grid', start: 'top 80%', once: true } });
+
+      // parallax sutil na marca d'água do herói
+      gsap.to('.hero-mark', { yPercent: -14, rotate: 6, ease: 'none',
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+      if (desktop) {
+        // scroll horizontal pinado — o efeito forte da página (12 áreas de atuação)
+        const trilho = document.querySelector('.trilho');
+        gsap.to(trilho, { x: () => -(trilho.scrollWidth - innerWidth + 64), ease: 'none',
+          scrollTrigger: { trigger: '#cena-areas', start: 'top top',
+            end: () => '+=' + (trilho.scrollWidth - innerWidth + 64),
+            scrub: 1, pin: true, invalidateOnRefresh: true } });
+      }
+      // mobile: sem pin — o .trilho já é scroll horizontal nativo via CSS (overflow-x)
+    }
+  );
+</script>
+
+</body>
+</html>
