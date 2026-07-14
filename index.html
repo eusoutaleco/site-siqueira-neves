@@ -5,9 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Siqueira &amp; Neves Advogados | Governador Valadares - MG</title>
 <meta name="description" content="Escritório de advocacia com 10 anos de atuação em Governador Valadares. Direito de Família, Trabalhista, Previdenciário, Empresarial, indenizações Samarco/Rio Doce e mais.">
+<meta name="theme-color" content="#0e1730">
+<link rel="canonical" href="https://eusoutaleco.github.io/site-siqueira-neves/">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://eusoutaleco.github.io/site-siqueira-neves/">
+<meta property="og:site_name" content="Siqueira &amp; Neves Advogados">
+<meta property="og:title" content="Siqueira &amp; Neves Advogados | Governador Valadares - MG">
+<meta property="og:description" content="Um mundo mais justo, caso a caso. 10 anos de advocacia em Governador Valadares: Família, Trabalhista, INSS, Empresarial e indenizações Samarco/Rio Doce.">
+<meta property="og:image" content="https://eusoutaleco.github.io/site-siqueira-neves/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Siqueira & Neves Advogados",
+  "url": "https://eusoutaleco.github.io/site-siqueira-neves/",
+  "image": "https://eusoutaleco.github.io/site-siqueira-neves/img/og-cover.jpg",
+  "telephone": "+55-33-3022-4128",
+  "email": "siqueiraeneves@hotmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. Santos Dumont, 460-B, Sala - Lourdes",
+    "addressLocality": "Governador Valadares",
+    "addressRegion": "MG",
+    "postalCode": "35022-120",
+    "addressCountry": "BR"
+  },
+  "sameAs": ["https://www.instagram.com/siqueiraenevesadvogados/"]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     /* papel, tinta, carimbo, selo — a matéria do direito */
@@ -223,7 +257,7 @@
   .dif-lista { list-style: none; padding: 0; margin: var(--e-6) 0 0; max-width: 640px; }
   .dif-lista li { display: flex; gap: var(--e-2); align-items: baseline; padding: var(--e-2) 0; font-size: 1.05rem; }
   .dif-lista .losango { color: var(--ouro); font-size: .7rem; flex: none; }
-  .dif-lista strong { font-weight: 600; }
+  .dif-lista strong { font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .92em; }
 
   /* ---------- DEPOIMENTOS ---------- */
   .prova { background: var(--papel); }
@@ -276,6 +310,11 @@
   @media (prefers-reduced-motion: reduce) { .whats-float::before, .whats-float::after { animation: none; opacity: 0; } }
 
   [data-reveal] { will-change: transform, opacity; }
+
+  /* âncoras deslizam no mobile (desktop usa Lenis) */
+  @media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
 
   :focus-visible { outline: 2px solid var(--ouro); outline-offset: 3px; }
 </style>
@@ -531,10 +570,24 @@
   gsap.registerPlugin(ScrollTrigger);
   const mm = gsap.matchMedia();
 
+  // assinatura: o Rio Doce desenhado pelo scroll — roda em TODO viewport sem reduced-motion
+  function desenharRio(fim) {
+    const rio = document.getElementById('rio-path');
+    if (!rio) return;
+    const len = rio.getTotalLength();
+    gsap.set(rio, { strokeDasharray: len, strokeDashoffset: len });
+    gsap.to(rio, { strokeDashoffset: 0, ease: 'none',
+      scrollTrigger: { trigger: '.samarco', start: 'top 82%', end: fim, scrub: 1 } });
+  }
+
   mm.add(
-    { desktop: '(min-width: 900px)', calmo: '(prefers-reduced-motion: reduce)' },
+    {
+      desktop: '(min-width: 900px) and (prefers-reduced-motion: no-preference)',
+      mobile: '(max-width: 899px) and (prefers-reduced-motion: no-preference)',
+      calmo: '(prefers-reduced-motion: reduce)'
+    },
     (ctx) => {
-      const { calmo } = ctx.conditions;
+      const { desktop, mobile, calmo } = ctx.conditions;
 
       // regra nº0: nada nasce invisível no CSS — o rio já renderiza inteiro sem JS.
       if (calmo) {
@@ -545,23 +598,26 @@
         return; // versão calma: sem Lenis, sem scrub — rio aparece desenhado
       }
 
-      const lenis = new Lenis({ anchors: true });
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((t) => lenis.raf(t * 1000));
-      gsap.ticker.lagSmoothing(0);
+      if (desktop) {
+        const lenis = new Lenis({ anchors: true });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((t) => lenis.raf(t * 1000));
+        gsap.ticker.lagSmoothing(0);
 
-      gsap.utils.toArray('[data-reveal]').forEach((el) => {
-        gsap.from(el, { y: 32, autoAlpha: 0, duration: .8, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 87%', once: true } });
-      });
+        gsap.utils.toArray('[data-reveal]').forEach((el) => {
+          gsap.from(el, { y: 32, autoAlpha: 0, duration: .8, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 87%', once: true } });
+        });
+        desenharRio('center center');
+      }
 
-      // assinatura: o Rio Doce desenhado pelo scroll
-      const rio = document.getElementById('rio-path');
-      if (rio) {
-        const len = rio.getTotalLength();
-        gsap.set(rio, { strokeDasharray: len, strokeDashoffset: len });
-        gsap.to(rio, { strokeDashoffset: 0, ease: 'none',
-          scrollTrigger: { trigger: '.samarco', start: 'top 78%', end: 'center center', scrub: 1 } });
+      if (mobile) {
+        // sem Lenis no toque (scroll nativo é melhor); reveals mais curtos, rio desenha mais cedo
+        gsap.utils.toArray('[data-reveal]').forEach((el) => {
+          gsap.from(el, { y: 20, autoAlpha: 0, duration: .55, ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+        });
+        desenharRio('top 30%');
       }
     }
   );
