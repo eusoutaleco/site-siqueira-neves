@@ -7,203 +7,226 @@
 <meta name="description" content="Escritório de advocacia com 10 anos de atuação em Governador Valadares. Direito de Família, Trabalhista, Previdenciário, Empresarial, indenizações Samarco/Rio Doce e mais.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* cor — navy + vinho do logo real, dourado como acento funcional (usado nas próprias peças pagas deles) */
-    --primaria: #17234b;
-    --primaria-clara: #223262;
-    --acento: #8a1730;
-    --destaque: #c9a24d;
-    --fundo: #0d1626;
-    --fundo-alt: #121f3c;
-    --texto: #f3f5f9;
-    --texto-suave: color-mix(in srgb, var(--texto) 62%, var(--fundo));
-    --branco: #ffffff;
+    /* papel, tinta, carimbo, selo — a matéria do direito */
+    --tinta: #17234b;
+    --tinta-funda: #0e1730;
+    --papel: #ede9e0;
+    --papel-alto: #f6f3ec;
+    --vinho: #8a1730;
+    --ouro: #c9a24d;
+    --texto-claro: #f1efe9;
+    --texto-suave-escuro: color-mix(in srgb, var(--tinta) 64%, var(--papel));
+    --texto-suave-claro: color-mix(in srgb, var(--texto-claro) 62%, var(--tinta-funda));
 
-    --f-display: clamp(2.3rem, 5vw + 1rem, 4.2rem);
-    --f-titulo: clamp(1.6rem, 2.4vw + .5rem, 2.4rem);
-    --f-corpo: clamp(1rem, .3vw + .9rem, 1.15rem);
+    --f-display: clamp(2.5rem, 5.2vw + 1rem, 4.6rem);
+    --f-titulo: clamp(1.7rem, 2.6vw + .5rem, 2.6rem);
+    --f-corpo: clamp(1.02rem, .3vw + .95rem, 1.18rem);
 
     --e-1: 8px; --e-2: 16px; --e-3: 24px; --e-4: 32px; --e-6: 48px; --e-8: 64px; --e-12: 96px;
-    --secao: clamp(64px, 9vw, 130px);
+    --secao: clamp(72px, 10vw, 140px);
 
-    --raio: 14px;
-    --sombra: 0 12px 40px rgb(0 0 0 / .35);
+    --raio: 4px;
     --dur: .35s; --curva: cubic-bezier(.22, 1, .36, 1);
   }
 
   * { box-sizing: border-box; }
   body {
-    margin: 0; background: var(--fundo); color: var(--texto);
-    font-family: 'Inter', sans-serif; font-size: var(--f-corpo); line-height: 1.65;
+    margin: 0; background: var(--papel); color: var(--tinta);
+    font-family: 'Newsreader', serif; font-size: var(--f-corpo); line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3 { font-family: 'Playfair Display', serif; margin: 0 0 var(--e-3); color: var(--branco); font-weight: 700; }
+  h1, h2, h3 { font-family: 'Newsreader', serif; font-weight: 500; margin: 0 0 var(--e-3); line-height: 1.12; }
   p { margin: 0 0 var(--e-3); }
   img { max-width: 100%; display: block; }
   a { color: inherit; }
 
-  .container { max-width: 1140px; margin: 0 auto; padding: 0 var(--e-4); }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 var(--e-4); }
   section { padding: var(--secao) 0; position: relative; }
 
-  .section-title { font-size: var(--f-titulo); line-height: 1.15; }
+  .display { font-size: var(--f-display); }
+  .section-title { font-size: var(--f-titulo); }
   .eyebrow {
-    display: inline-block; font-family: 'Inter', sans-serif; font-weight: 600;
-    font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--destaque); margin-bottom: var(--e-2);
+    display: block; font-family: 'Archivo', sans-serif; font-weight: 600;
+    font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+    margin-bottom: var(--e-3);
   }
+  .dark .eyebrow { color: var(--ouro); }
+  .light .eyebrow { color: var(--vinho); }
+  em { font-style: italic; font-weight: 500; }
 
   .btn {
     display: inline-flex; align-items: center; gap: var(--e-1);
-    background: var(--destaque); color: var(--fundo);
-    padding: 16px 28px; border-radius: var(--raio); border: none;
-    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem;
-    text-decoration: none; cursor: pointer;
-    box-shadow: var(--sombra);
+    background: var(--ouro); color: var(--tinta-funda);
+    padding: 15px 28px; border-radius: var(--raio); border: none;
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .95rem;
+    letter-spacing: .02em; text-decoration: none; cursor: pointer;
     transition: transform var(--dur) var(--curva), filter var(--dur) var(--curva);
   }
-  .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
-  .btn.ghost { background: transparent; color: var(--branco); border: 1.5px solid rgb(255 255 255 / .35); box-shadow: none; }
-  .btn.ghost:hover { background: rgb(255 255 255 / .08); }
+  .btn:hover { transform: translateY(-2px); filter: brightness(1.06); }
+  .btn.ghost { background: transparent; color: currentColor; border: 1px solid currentColor; }
+  .btn.ghost:hover { filter: none; background: rgb(128 128 128 / .08); }
 
   /* ---------- NAV ---------- */
   header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-    background: color-mix(in srgb, var(--fundo) 85%, transparent);
+    background: color-mix(in srgb, var(--tinta-funda) 82%, transparent);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgb(255 255 255 / .08);
   }
-  nav { display: flex; align-items: center; justify-content: space-between; padding: 14px var(--e-4); max-width: 1140px; margin: 0 auto; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 14px var(--e-4); max-width: 1120px; margin: 0 auto; }
   .logo img { height: 34px; width: auto; }
   .nav-links { display: flex; gap: var(--e-4); list-style: none; margin: 0; padding: 0; }
-  .nav-links a { text-decoration: none; font-weight: 500; font-size: .92rem; color: var(--texto-suave); }
+  .nav-links a { text-decoration: none; font-family: 'Archivo', sans-serif; font-weight: 500; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: rgb(241 239 233 / .75); }
+  .nav-links a:hover { color: var(--ouro); }
   .nav-cta { display: none; }
-  @media (min-width: 860px) { .nav-cta { display: inline-flex; padding: 10px 20px; font-size: .88rem; } }
-  @media (max-width: 859px) { .nav-links { display: none; } }
+  @media (min-width: 900px) { .nav-cta { display: inline-flex; padding: 10px 20px; font-size: .82rem; } }
+  @media (max-width: 899px) { .nav-links { display: none; } }
 
   /* ---------- HERO ---------- */
   .hero {
-    min-height: 100svh; display: flex; align-items: center;
-    padding-top: 130px; padding-bottom: var(--e-8);
-    position: relative; overflow: hidden;
-    background: radial-gradient(circle at 80% 20%, var(--fundo-alt), var(--fundo) 60%);
+    min-height: 100svh; display: grid; align-items: stretch;
+    padding: 0; overflow: hidden;
+    background: var(--tinta-funda); color: var(--texto-claro);
   }
-  .hero-mark {
-    position: absolute; top: 50%; left: -10%; width: min(640px, 55vw); aspect-ratio: 836/900;
-    transform: translateY(-50%); opacity: .08; pointer-events: none;
+  .hero-grid { display: grid; min-height: 100svh; }
+  @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.08fr .92fr; } }
+  .hero-texto {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 140px var(--e-4) var(--e-8);
   }
-  .hero-inner { position: relative; z-index: 2; display: grid; gap: var(--e-8); align-items: center; }
-  @media (min-width: 900px) { .hero-inner { grid-template-columns: 1.1fr .9fr; } }
-  .hero-content { max-width: 640px; }
-  .hero-photo-wrap { position: relative; justify-self: center; width: min(360px, 78vw); }
-  .hero-photo-blob {
-    position: absolute; inset: -12% -16%; z-index: 0;
-    background: radial-gradient(circle, var(--destaque) 0%, transparent 68%);
-    opacity: .3; filter: blur(6px);
+  @media (min-width: 900px) {
+    .hero-texto { padding-left: max(var(--e-4), calc((100vw - 1120px) / 2)); padding-right: var(--e-8); }
   }
-  .hero-photo {
-    position: relative; z-index: 1; width: 100%; aspect-ratio: 562/1000;
-    border-radius: var(--raio); overflow: hidden;
-    box-shadow: 0 24px 60px rgb(0 0 0 / .45), 0 0 0 1px rgb(255 255 255 / .1) inset;
-    animation: flutuar 6s ease-in-out infinite;
-  }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-  @keyframes flutuar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
-  @media (prefers-reduced-motion: reduce) { .hero-photo { animation: none; } }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 10px; margin-bottom: var(--e-3);
-    background: rgb(255 255 255 / .06); border: 1px solid rgb(255 255 255 / .16);
-    padding: 8px 16px; border-radius: 999px; font-size: .85rem; font-weight: 600;
-    color: var(--branco);
-  }
-  .hero-badge .estrela { color: var(--destaque); }
-  .hero h1 { font-size: var(--f-display); line-height: 1.08; margin-bottom: var(--e-3); }
-  .hero h1 em { color: var(--destaque); font-style: normal; }
-  .hero p.lead { font-size: 1.2rem; max-width: 560px; color: var(--texto-suave); }
+  .hero h1 { color: var(--texto-claro); font-size: var(--f-display); margin-bottom: var(--e-3); max-width: 13ch; }
+  .hero h1 em { color: var(--ouro); }
+  .hero .lead { font-size: 1.15rem; max-width: 46ch; color: var(--texto-suave-claro); }
   .hero-ctas { display: flex; gap: var(--e-2); flex-wrap: wrap; margin-top: var(--e-4); }
 
-  /* ---------- FAIXA DE AUTORIDADE ---------- */
-  .autoridade { background: var(--fundo-alt); padding: var(--e-6) 0; border-top: 1px solid rgb(255 255 255 / .06); border-bottom: 1px solid rgb(255 255 255 / .06); }
-  .autoridade .container { display: grid; gap: var(--e-4); grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); text-align: center; }
-  .autoridade-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: var(--destaque); line-height: 1; margin-bottom: 6px; }
-  .autoridade-label { font-size: .85rem; color: var(--texto-suave); }
+  .hero-foto { position: relative; min-height: 46svh; }
+  .hero-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .hero-foto::before {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(90deg, var(--tinta-funda) 0%, transparent 22%),
+                linear-gradient(0deg, rgb(14 23 48 / .55) 0%, transparent 30%);
+  }
+  @media (max-width: 899px) {
+    .hero-foto { order: 2; min-height: 52svh; }
+    .hero-foto::before { background: linear-gradient(0deg, var(--tinta-funda) 0%, transparent 24%); }
+  }
 
-  /* ---------- ÁREAS (scroll horizontal pinado) ---------- */
-  .areas-wrap { background: var(--fundo); overflow: hidden; }
-  .areas-head { text-align: center; max-width: 640px; margin: 0 auto var(--e-8); }
-  .cena-areas { position: relative; }
-  .trilho {
-    display: flex; gap: var(--e-3); width: max-content; padding: 0 var(--e-4);
+  /* carimbo — 5 estrelas Google */
+  .carimbo {
+    position: absolute; z-index: 2; left: -10px; bottom: 42px;
+    transform: rotate(-3deg);
+    font-family: 'Archivo', sans-serif; font-weight: 700; font-size: .72rem;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ouro); border: 2px solid var(--ouro); border-radius: var(--raio);
+    padding: 10px 16px; background: rgb(14 23 48 / .72); backdrop-filter: blur(4px);
   }
-  .area-card {
-    background: var(--fundo-alt); border: 1px solid rgb(255 255 255 / .08);
-    border-radius: var(--raio); padding: var(--e-4); width: 280px; flex: none;
-    border-top: 3px solid var(--acento);
+  @media (max-width: 899px) { .carimbo { left: var(--e-3); bottom: var(--e-3); } }
+
+  /* ---------- LINHA DE CABEÇALHO (dados do escritório) ---------- */
+  .ficha { background: var(--papel); padding: var(--e-4) 0; border-bottom: 1px solid color-mix(in srgb, var(--tinta) 14%, var(--papel)); }
+  .ficha .container {
+    display: flex; flex-wrap: wrap; gap: var(--e-2) var(--e-4);
+    justify-content: center; align-items: baseline;
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .74rem;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--texto-suave-escuro);
   }
-  .area-card h3 { font-size: 1.05rem; margin-bottom: var(--e-1); }
-  .area-card p { color: var(--texto-suave); font-size: .92rem; margin: 0; }
-  /* mobile: vira scroll horizontal nativo, sem pin */
-  @media (max-width: 859px) {
-    .trilho { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: var(--e-2); }
-    .area-card { scroll-snap-align: start; }
+  .ficha .losango { color: var(--ouro); font-size: .6rem; }
+
+  /* ---------- ÍNDICE DE ÁREAS ---------- */
+  .areas { background: var(--papel); }
+  .areas-head { max-width: 720px; margin-bottom: var(--e-8); }
+  .indice { max-width: 860px; margin: 0 auto; list-style: none; padding: 0; }
+  .indice li { padding: var(--e-3) 0; border-bottom: 1px solid color-mix(in srgb, var(--tinta) 10%, var(--papel)); }
+  .indice li:last-child { border-bottom: none; }
+  .indice-linha { display: flex; align-items: baseline; gap: var(--e-2); }
+  .indice-num {
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .78rem;
+    color: var(--vinho); min-width: 2ch; letter-spacing: .04em;
+  }
+  .indice-titulo { font-size: 1.25rem; font-weight: 500; white-space: nowrap; }
+  .indice-leader { flex: 1; border-bottom: 2px dotted color-mix(in srgb, var(--tinta) 26%, var(--papel)); transform: translateY(-5px); min-width: 24px; }
+  .indice-chave {
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .68rem;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--texto-suave-escuro);
+    text-align: right; white-space: nowrap;
+  }
+  .indice-desc { margin: 6px 0 0 calc(2ch + var(--e-2)); font-size: .98rem; color: var(--texto-suave-escuro); max-width: 62ch; }
+  @media (max-width: 640px) {
+    .indice-titulo { white-space: normal; font-size: 1.1rem; }
+    .indice-chave { display: none; }
+    .indice-leader { display: none; }
+    .indice-desc { margin-left: calc(2ch + var(--e-2)); }
   }
 
   /* ---------- SAMARCO / RIO DOCE ---------- */
-  .samarco { background: linear-gradient(155deg, var(--acento), #5c0f21); position: relative; }
-  .samarco .container { max-width: 760px; text-align: center; }
-  .samarco .eyebrow { color: rgb(255 255 255 / .85); }
-  .samarco h2 { color: var(--branco); }
-  .samarco p { color: rgb(255 255 255 / .88); font-size: 1.1rem; }
-
-  /* ---------- DIFERENCIAIS ---------- */
-  .diferenciais { background: var(--fundo-alt); }
-  .dif-grid { display: grid; gap: var(--e-3); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-  .dif-card { background: var(--fundo); border: 1px solid rgb(255 255 255 / .08); border-radius: var(--raio); padding: var(--e-4); }
-  .dif-card h3 { font-size: 1.1rem; margin-bottom: var(--e-1); }
-  .dif-card p { color: var(--texto-suave); margin: 0; font-size: .95rem; }
-
-  /* ---------- SÓCIOS ---------- */
-  .socios { background: var(--fundo); }
-  .socios-grid { display: grid; gap: var(--e-4); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .socio-card {
-    background: var(--fundo-alt); border-radius: var(--raio); padding: var(--e-4);
-    border: 1px solid rgb(255 255 255 / .08); text-align: center;
+  .samarco { background: var(--vinho); color: var(--texto-claro); overflow: hidden; }
+  .samarco .container { max-width: 820px; }
+  .samarco h2 { color: var(--texto-claro); }
+  .samarco p { color: color-mix(in srgb, var(--texto-claro) 88%, var(--vinho)); font-size: 1.12rem; max-width: 56ch; }
+  .rio { display: block; width: 100%; height: auto; margin: var(--e-6) 0; }
+  .rio path { fill: none; stroke: var(--ouro); stroke-width: 2.5; stroke-linecap: round; }
+  .rio-legenda {
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .68rem;
+    letter-spacing: .18em; text-transform: uppercase; color: color-mix(in srgb, var(--texto-claro) 65%, var(--vinho));
+    margin-top: calc(var(--e-2) * -1); margin-bottom: var(--e-4);
   }
-  .socio-avatar {
-    width: 96px; height: 96px; border-radius: 50%; margin: 0 auto var(--e-3);
-    background: linear-gradient(155deg, var(--primaria-clara), var(--acento));
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--branco);
-  }
-  .socio-card h3 { font-size: 1.15rem; margin-bottom: 4px; }
-  .socio-card .socio-role { color: var(--destaque); font-size: .85rem; font-weight: 600; margin-bottom: var(--e-2); }
-  .socio-card p { color: var(--texto-suave); font-size: .92rem; margin: 0; }
+  .samarco .btn.ghost { color: var(--texto-claro); border-color: color-mix(in srgb, var(--texto-claro) 55%, var(--vinho)); }
 
-  /* ---------- PROVA ---------- */
-  .prova { background: var(--fundo-alt); }
-  .prova-rating { display: flex; align-items: center; gap: var(--e-2); margin-bottom: var(--e-6); flex-wrap: wrap; }
-  .prova-nota { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--destaque); line-height: 1; }
-  .prova-estrelas { color: var(--destaque); font-size: 1.3rem; letter-spacing: 2px; }
-  .prova-grid { display: grid; gap: var(--e-3); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .depoimento {
-    background: var(--fundo); border: 1px solid rgb(255 255 255 / .08); border-radius: var(--raio); padding: var(--e-4);
-    font-style: italic; color: var(--texto);
+  /* ---------- ESCRITÓRIO & SÓCIOS ---------- */
+  .escritorio { background: var(--papel-alto); }
+  .socios-grid { display: grid; align-items: center; gap: var(--e-4); margin: var(--e-8) 0; }
+  @media (min-width: 760px) { .socios-grid { grid-template-columns: 1fr auto 1fr; } }
+  .socio h3 { font-size: clamp(1.5rem, 2.4vw + .5rem, 2.2rem); margin-bottom: var(--e-1); }
+  .socio .socio-role {
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .7rem;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--vinho); margin-bottom: var(--e-2);
   }
-  .depoimento::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--destaque); line-height: 0; display: block; margin-bottom: var(--e-2); font-style: normal; }
-  .depoimento-autor { margin-top: var(--e-2); font-style: normal; font-weight: 600; font-size: .9rem; color: var(--texto-suave); }
+  .socio p { color: var(--texto-suave-escuro); font-size: 1rem; margin: 0; max-width: 38ch; }
+  .socio.dir { text-align: right; }
+  .socio.dir p { margin-left: auto; }
+  @media (max-width: 759px) { .socio.dir { text-align: left; } .socio.dir p { margin-left: 0; } }
+  .e-comercial {
+    font-family: 'Newsreader', serif; font-style: italic; font-weight: 400;
+    font-size: clamp(5rem, 12vw, 9rem); line-height: 1; color: var(--ouro);
+    text-align: center; user-select: none;
+  }
+  .dif-lista { list-style: none; padding: 0; margin: var(--e-6) 0 0; max-width: 640px; }
+  .dif-lista li { display: flex; gap: var(--e-2); align-items: baseline; padding: var(--e-2) 0; font-size: 1.05rem; }
+  .dif-lista .losango { color: var(--ouro); font-size: .7rem; flex: none; }
+  .dif-lista strong { font-weight: 600; }
+
+  /* ---------- DEPOIMENTOS ---------- */
+  .prova { background: var(--papel); }
+  .prova-grid { display: grid; gap: var(--e-6); margin-top: var(--e-6); }
+  @media (min-width: 760px) { .prova-grid { grid-template-columns: 1fr 1fr; } }
+  .depoimento { font-size: 1.22rem; font-style: italic; line-height: 1.55; max-width: 44ch; }
+  .depoimento-autor {
+    display: block; margin-top: var(--e-3); font-style: normal;
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .72rem;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--vinho);
+  }
 
   /* ---------- CTA FINAL ---------- */
-  .cta-final { background: linear-gradient(160deg, var(--fundo-alt), var(--primaria)); text-align: center; }
-  .cta-final p { color: var(--texto-suave); max-width: 520px; margin-left: auto; margin-right: auto; }
+  .cta-final { background: var(--tinta-funda); color: var(--texto-claro); text-align: center; }
+  .cta-final h2 { color: var(--texto-claro); max-width: 22ch; margin-left: auto; margin-right: auto; }
+  .cta-final p { color: var(--texto-suave-claro); max-width: 46ch; margin-left: auto; margin-right: auto; }
 
   /* ---------- FOOTER ---------- */
-  footer { background: var(--fundo-alt); color: var(--texto-suave); padding: var(--e-6) 0 var(--e-4); font-size: .9rem; border-top: 1px solid rgb(255 255 255 / .08); }
-  .footer-grid { display: grid; gap: var(--e-4); grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: var(--e-4); }
-  footer h4 { color: var(--branco); font-family: 'Inter', sans-serif; font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: var(--e-2); }
+  footer { background: var(--tinta-funda); color: var(--texto-suave-claro); padding: var(--e-8) 0 var(--e-4); font-size: .92rem; border-top: 1px solid rgb(255 255 255 / .08); }
+  footer .container { font-family: 'Archivo', sans-serif; }
+  .footer-grid { display: grid; gap: var(--e-4); grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: var(--e-6); }
+  footer h4 { color: var(--texto-claro); font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; margin: 0 0 var(--e-2); font-weight: 600; }
+  footer p { font-size: .88rem; }
   footer a { text-decoration: none; }
-  footer a:hover { color: var(--destaque); }
-  .footer-bottom { border-top: 1px solid rgb(255 255 255 / .08); padding-top: var(--e-3); text-align: center; font-size: .8rem; opacity: .7; }
+  footer a:hover { color: var(--ouro); }
+  .footer-logo { height: 40px; width: auto; margin-bottom: var(--e-4); }
+  .footer-bottom { border-top: 1px solid rgb(255 255 255 / .08); padding-top: var(--e-3); text-align: center; font-size: .74rem; letter-spacing: .06em; opacity: .6; }
 
   /* ---------- WHATSAPP FLUTUANTE ---------- */
   .whats-float {
@@ -223,6 +246,8 @@
   @media (prefers-reduced-motion: reduce) { .whats-float::before, .whats-float::after { animation: none; opacity: 0; } }
 
   [data-reveal] { will-change: transform, opacity; }
+
+  :focus-visible { outline: 2px solid var(--ouro); outline-offset: 3px; }
 </style>
 </head>
 <body>
@@ -232,8 +257,8 @@
     <a href="#topo" class="logo"><img src="img/logo-white.webp" alt="Siqueira &amp; Neves Advogados" width="700" height="248"></a>
     <ul class="nav-links">
       <li><a href="#areas">Áreas</a></li>
-      <li><a href="#samarco">Samarco/Rio Doce</a></li>
-      <li><a href="#socios">Sócios</a></li>
+      <li><a href="#samarco">Samarco</a></li>
+      <li><a href="#escritorio">Escritório</a></li>
       <li><a href="#depoimentos">Depoimentos</a></li>
     </ul>
     <a href="https://api.whatsapp.com/send?phone=553330224128" class="btn nav-cta" target="_blank" rel="noopener">Falar no WhatsApp</a>
@@ -243,143 +268,157 @@
 <main id="topo">
 
   <!-- HERÓI -->
-  <section class="hero">
-    <img class="hero-mark" src="img/mark.webp" alt="" data-parallax aria-hidden="true">
-    <div class="container hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge"><span class="estrela">★★★★★</span> 5,0 no Google · 10 anos de atuação</div>
-        <h1 data-reveal>Fazendo um mundo mais justo há <em>10 anos</em>.</h1>
-        <p class="lead" data-reveal>Escritório full-service em Governador Valadares — Direito de Família, Trabalhista, Previdenciário, Empresarial e indenizações Samarco/Rio Doce. Atendimento digital ou presencial, com os sócios Elias Siqueira Jr. e Mardson Neves.</p>
+  <section class="hero dark" style="padding:0">
+    <div class="hero-grid">
+      <div class="hero-texto">
+        <span class="eyebrow" data-reveal>Advocacia · Governador Valadares · desde 2016</span>
+        <h1 data-reveal>Um mundo mais justo, <em>caso a caso.</em></h1>
+        <p class="lead" data-reveal>Escritório full-service com 10 anos de atuação — Família, Trabalhista, Previdenciário, Empresarial e indenizações Samarco/Rio Doce. À frente, os sócios Elias Siqueira Jr. e Mardson Neves.</p>
         <div class="hero-ctas" data-reveal>
           <a href="https://api.whatsapp.com/send?phone=553330224128" class="btn" target="_blank" rel="noopener">Falar com um especialista</a>
-          <a href="#areas" class="btn ghost">Ver áreas de atuação</a>
+          <a href="#areas" class="btn ghost">Índice de áreas</a>
         </div>
       </div>
-      <div class="hero-photo-wrap" data-reveal>
-        <div class="hero-photo-blob"></div>
-        <div class="hero-photo">
-          <img src="img/equipe.webp" alt="Equipe Siqueira &amp; Neves Advogados" width="562" height="1000" loading="eager">
-        </div>
+      <div class="hero-foto">
+        <img src="img/equipe.webp" alt="Equipe Siqueira &amp; Neves Advogados" width="562" height="1000" loading="eager" fetchpriority="high">
+        <div class="carimbo">★★★★★ 5,0 · Google</div>
       </div>
     </div>
   </section>
 
-  <!-- FAIXA DE AUTORIDADE -->
-  <section class="autoridade">
+  <!-- FICHA -->
+  <div class="ficha light">
     <div class="container">
-      <div data-reveal><div class="autoridade-num">10</div><div class="autoridade-label">anos de atuação</div></div>
-      <div data-reveal><div class="autoridade-num">12</div><div class="autoridade-label">áreas do direito</div></div>
-      <div data-reveal><div class="autoridade-num">5,0</div><div class="autoridade-label">nota no Google</div></div>
-      <div data-reveal><div class="autoridade-num">2</div><div class="autoridade-label">sócios à frente do escritório</div></div>
+      <span>Gov. Valadares — MG</span><span class="losango">◆</span>
+      <span>Desde 2016</span><span class="losango">◆</span>
+      <span>12 áreas do direito</span><span class="losango">◆</span>
+      <span>Atendimento digital ou presencial</span>
+    </div>
+  </div>
+
+  <!-- ÍNDICE DE ÁREAS -->
+  <section class="areas light" id="areas">
+    <div class="container">
+      <div class="areas-head">
+        <span class="eyebrow">Áreas de atuação — índice</span>
+        <h2 class="section-title" data-reveal>Onde o Siqueira &amp; Neves atua por você</h2>
+      </div>
+      <ol class="indice">
+        <li data-reveal>
+          <div class="indice-linha"><span class="indice-num">01</span><span class="indice-titulo">Família e Inventário</span><span class="indice-leader"></span><span class="indice-chave">Divórcio · Guarda · Pensão</span></div>
+          <p class="indice-desc">Os momentos mais delicados conduzidos com cuidado — do acordo ao inventário.</p>
+        </li>
+        <li data-reveal>
+          <div class="indice-linha"><span class="indice-num">02</span><span class="indice-titulo">Trabalhista</span><span class="indice-leader"></span><span class="indice-chave">CLT · Rescisão · Verbas</span></div>
+          <p class="indice-desc">Defesa de direitos trabalhistas, para empregado ou empregador.</p>
+        </li>
+        <li data-reveal>
+          <div class="indice-linha"><span class="indice-num">03</span><span class="indice-titulo">Previdenciário</span><span class="indice-leader"></span><span class="indice-chave">INSS · Aposentadoria</span></div>
+          <p class="indice-desc">Aposentadoria, desaposentação e benefícios junto ao INSS.</p>
+        </li>
+        <li data-reveal>
+          <div class="indice-linha"><span class="indice-num">04</span><span class="indice-titulo">Empresarial e Societário</span><span class="indice-leader"></span><span class="indice-chave">Contratos · Auditoria</span></div>
+          <p class="indice-desc">Assessoria preventiva e estratégica para empresários e sociedades.</p>
+        </li>
+        <li data-reveal>
+          <div class="indice-linha"><span class="indice-num">05</span><span class="indice-titulo">Consumidor</span><span class="indice-leader"></span><span class="indice-chave">Cobrança indevida</span></div>
+          <p class="indice-desc">Produto com defeito, cobrança indevida e relações de consumo em geral.</p>
+        </li>
+        <li data-reveal>
+          <div class="indice-linha"><span class="indice-num">06</span><span class="indice-titulo">Saúde e Direito Médico</span><span class="indice-leader"></span><span class="indice-chave">Planos de saúde</span></div>
+          <p class="indice-desc">Questões com planos de saúde e responsabilidade médica.</p>
+        </li>
+        <li data-reveal>
+          <div class="indice-linha"><span class="indice-num">07</span><span class="indice-titulo">Imobiliário</span><span class="indice-leader"></span><span class="indice-chave">Compra · Regularização</span></div>
+          <p class="indice-desc">Compra, venda, regularização e disputas envolvendo imóveis.</p>
+        </li>
+        <li data-reveal>
+          <div class="indice-linha"><span class="indice-num">08</span><span class="indice-titulo">Recuperação de Crédito</span><span class="indice-leader"></span><span class="indice-chave">Cobrança judicial</span></div>
+          <p class="indice-desc">Cobrança judicial e extrajudicial de valores devidos.</p>
+        </li>
+        <li data-reveal>
+          <div class="indice-linha"><span class="indice-num">09</span><span class="indice-titulo">Bancário</span><span class="indice-leader"></span><span class="indice-chave">Revisão de contratos</span></div>
+          <p class="indice-desc">Revisão de contratos e questões com instituições financeiras.</p>
+        </li>
+        <li data-reveal>
+          <div class="indice-linha"><span class="indice-num">10</span><span class="indice-titulo">Trânsito</span><span class="indice-leader"></span><span class="indice-chave">CNH · Multas</span></div>
+          <p class="indice-desc">Suspensão de CNH, multas e infrações de trânsito.</p>
+        </li>
+        <li data-reveal>
+          <div class="indice-linha"><span class="indice-num">11</span><span class="indice-titulo">Administrativo</span><span class="indice-leader"></span><span class="indice-chave">Servidor público</span></div>
+          <p class="indice-desc">Questões envolvendo servidores públicos e a administração pública.</p>
+        </li>
+        <li data-reveal>
+          <div class="indice-linha"><span class="indice-num">12</span><span class="indice-titulo">Indenizações Samarco / Rio Doce</span><span class="indice-leader"></span><span class="indice-chave">Atingidos · PID</span></div>
+          <p class="indice-desc">Atuação especializada junto aos atingidos do desastre do Rio Doce — detalhes abaixo.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- ÁREAS -->
-  <section class="areas-wrap" id="areas">
-    <div class="cena-areas" id="cena-areas">
-      <div class="container areas-head">
-        <span class="eyebrow">Áreas de atuação</span>
-        <h2 class="section-title">Onde o Siqueira &amp; Neves atua por você</h2>
-      </div>
-      <div class="trilho">
-        <div class="area-card"><h3>Direito de Família e Inventário</h3><p>Divórcio, guarda, pensão e inventário conduzidos com cuidado nos momentos mais delicados.</p></div>
-        <div class="area-card"><h3>Direito Trabalhista</h3><p>Defesa de direitos trabalhistas, para empregado ou empregador.</p></div>
-        <div class="area-card"><h3>Direito Previdenciário</h3><p>Aposentadoria, desaposentação e benefícios junto ao INSS.</p></div>
-        <div class="area-card"><h3>Direito Empresarial e Societário</h3><p>Assessoria preventiva e estratégica para empresários e sociedades.</p></div>
-        <div class="area-card"><h3>Direito do Consumidor</h3><p>Cobrança indevida, produto com defeito e relações de consumo em geral.</p></div>
-        <div class="area-card"><h3>Direito da Saúde e Direito Médico</h3><p>Questões com planos de saúde e responsabilidade médica.</p></div>
-        <div class="area-card"><h3>Direito Imobiliário</h3><p>Compra, venda, regularização e disputas envolvendo imóveis.</p></div>
-        <div class="area-card"><h3>Recuperação de Crédito</h3><p>Cobrança judicial e extrajudicial de valores devidos.</p></div>
-        <div class="area-card"><h3>Direito Bancário</h3><p>Revisão de contratos e questões com instituições financeiras.</p></div>
-        <div class="area-card"><h3>Direito do Trânsito</h3><p>Suspensão de CNH, multas e infrações de trânsito.</p></div>
-        <div class="area-card"><h3>Direito Administrativo</h3><p>Questões envolvendo servidores públicos e a administração pública.</p></div>
-        <div class="area-card"><h3>Indenizações Samarco/Rio Doce</h3><p>Atuação especializada em pedidos de indenização ligados ao desastre do Rio Doce.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SAMARCO -->
-  <section class="samarco" id="samarco">
+  <!-- SAMARCO / RIO DOCE -->
+  <section class="samarco dark" id="samarco">
     <div class="container">
       <span class="eyebrow">Especialização local</span>
-      <h2 class="section-title" data-reveal>Indenizações Samarco / Rio Doce</h2>
-      <p data-reveal>Atuamos junto a famílias e trabalhadores da região atingidos pelo desastre do Rio Doce, orientando sobre direito à indenização e acompanhando cada etapa do processo — do cadastro ao recebimento.</p>
+      <h2 class="section-title" data-reveal>O Rio Doce passa por aqui. A reparação também.</h2>
+      <svg class="rio" viewBox="0 0 800 80" preserveAspectRatio="none" aria-hidden="true">
+        <path id="rio-path" d="M0,52 C60,20 110,68 180,48 C250,28 290,64 360,44 C430,24 470,66 540,46 C610,26 650,60 720,42 C760,32 780,40 800,36"/>
+      </svg>
+      <p class="rio-legenda">Rio Doce — Governador Valadares, MG</p>
+      <p data-reveal>Atuamos junto a famílias e trabalhadores da região atingidos pelo desastre de Mariana, orientando sobre o direito à indenização e acompanhando cada etapa — do cadastro no programa ao recebimento.</p>
       <a href="https://api.whatsapp.com/send?phone=553330224128" class="btn ghost" target="_blank" rel="noopener" data-reveal>Falar sobre meu caso</a>
     </div>
   </section>
 
-  <!-- DIFERENCIAIS -->
-  <section class="diferenciais">
+  <!-- ESCRITÓRIO & SÓCIOS -->
+  <section class="escritorio light" id="escritorio">
     <div class="container">
-      <span class="eyebrow">Por que o Siqueira &amp; Neves</span>
-      <h2 class="section-title" data-reveal>Nossos diferenciais</h2>
-      <div class="dif-grid">
-        <div class="dif-card" data-reveal>
-          <h3>Atendimento personalizado</h3>
-          <p>Proximidade com o cliente, respeitando as peculiaridades de cada caso — não um processo a mais na pilha.</p>
-        </div>
-        <div class="dif-card" data-reveal>
-          <h3>Digital ou presencial</h3>
-          <p>Sede física em Governador Valadares, e atendimento 100% digital pra quem prefere resolver tudo pelo celular.</p>
-        </div>
-        <div class="dif-card" data-reveal>
-          <h3>Equipe especializada</h3>
-          <p>Sócios fundadores com anos de atuação nas mais diversas áreas do direito.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SÓCIOS -->
-  <section class="socios" id="socios">
-    <div class="container">
-      <span class="eyebrow">Quem cuida do seu caso</span>
-      <h2 class="section-title" data-reveal>Sócios fundadores</h2>
+      <span class="eyebrow">O escritório</span>
+      <h2 class="section-title" data-reveal>Dois sócios fundadores. Uma banca inteira por trás.</h2>
       <div class="socios-grid">
-        <div class="socio-card" data-reveal>
-          <div class="socio-avatar">ES</div>
+        <div class="socio dir" data-reveal>
+          <div class="socio-role">Sócio fundador</div>
           <h3>Elias Siqueira Jr.</h3>
-          <div class="socio-role">Sócio fundador</div>
-          <p>Advogado com ampla experiência, à frente das estratégias jurídicas do escritório em Governador Valadares.</p>
+          <p>Advogado com ampla experiência, à frente das estratégias jurídicas do escritório.</p>
         </div>
-        <div class="socio-card" data-reveal>
-          <div class="socio-avatar">MN</div>
-          <h3>Mardson Neves</h3>
+        <div class="e-comercial" aria-hidden="true">&amp;</div>
+        <div class="socio" data-reveal>
           <div class="socio-role">Sócio fundador</div>
-          <p>Advogado com ampla experiência, à frente das estratégias jurídicas do escritório em Governador Valadares.</p>
+          <h3>Mardson Neves</h3>
+          <p>Advogado com ampla experiência, condução próxima de cada cliente e cada caso.</p>
         </div>
       </div>
+      <ul class="dif-lista">
+        <li data-reveal><span class="losango">◆</span><span><strong>Atendimento personalizado.</strong> Proximidade com o cliente, respeitando as peculiaridades de cada caso.</span></li>
+        <li data-reveal><span class="losango">◆</span><span><strong>Digital ou presencial.</strong> Sede física em Governador Valadares — e atendimento inteiro pelo celular, se você preferir.</span></li>
+        <li data-reveal><span class="losango">◆</span><span><strong>Equipe especializada.</strong> Advogados com anos de atuação nas mais diversas áreas do direito.</span></li>
+      </ul>
     </div>
   </section>
 
-  <!-- PROVA -->
-  <section class="prova" id="depoimentos">
+  <!-- DEPOIMENTOS -->
+  <section class="prova light" id="depoimentos">
     <div class="container">
-      <div class="prova-rating">
-        <div class="prova-nota">5,0</div>
-        <div>
-          <div class="prova-estrelas">★★★★★</div>
-          <p style="margin:0; color:var(--texto-suave);">Avaliações no Google</p>
-        </div>
-      </div>
+      <span class="eyebrow">O que dizem — avaliações Google · 5,0 ★</span>
       <div class="prova-grid">
-        <div class="depoimento" data-reveal>
-          Siqueira e Neves advogados representa um escritório de profissionais que tratam clientes com seriedade e compromisso e buscam solucionar os problemas/processos de maneira bem assertiva e competente.
-          <div class="depoimento-autor">— Daniele Dutra</div>
-        </div>
-        <div class="depoimento" data-reveal>
-          Excelentes advogados, tive o privilégio de poder contar com o trabalho deles. Profissionais pontuais com os seus prazos, valor justo, e excelente atendimento começando pela recepção. Indico a todos.
-          <div class="depoimento-autor">— Lucilene Alves de Souza Vargas</div>
-        </div>
+        <blockquote class="depoimento" data-reveal>
+          "Um escritório de profissionais que tratam clientes com seriedade e compromisso, e buscam solucionar os processos de maneira assertiva e competente."
+          <span class="depoimento-autor">— Daniele Dutra</span>
+        </blockquote>
+        <blockquote class="depoimento" data-reveal>
+          "Excelentes advogados. Profissionais pontuais com os seus prazos, valor justo, e excelente atendimento começando pela recepção. Indico a todos."
+          <span class="depoimento-autor">— Lucilene Alves de Souza Vargas</span>
+        </blockquote>
       </div>
     </div>
   </section>
 
   <!-- CTA FINAL -->
-  <section class="cta-final">
+  <section class="cta-final dark">
     <div class="container">
+      <span class="eyebrow">Fale conosco</span>
       <h2 class="section-title" data-reveal>Precisa resolver algo com a Justiça?</h2>
-      <p data-reveal>Fala agora com o Siqueira &amp; Neves Advogados e entenda, sem compromisso, qual é o melhor caminho pro seu caso.</p>
+      <p data-reveal>Fale agora com o Siqueira &amp; Neves e entenda, sem compromisso, qual é o melhor caminho para o seu caso.</p>
       <a href="https://api.whatsapp.com/send?phone=553330224128" class="btn" target="_blank" rel="noopener" data-reveal>Falar no WhatsApp</a>
     </div>
   </section>
@@ -388,10 +427,11 @@
 
 <footer>
   <div class="container">
+    <img class="footer-logo" src="img/logo-white.webp" alt="Siqueira &amp; Neves Advogados" width="700" height="248" loading="lazy">
     <div class="footer-grid">
       <div>
-        <h4>Siqueira &amp; Neves Advogados</h4>
-        <p style="margin:0;">Governador Valadares - MG<br>10 anos de atuação</p>
+        <h4>Escritório</h4>
+        <p style="margin:0;">Siqueira &amp; Neves Advogados<br>Governador Valadares — MG · desde 2016</p>
       </div>
       <div>
         <h4>Contato</h4>
@@ -400,7 +440,7 @@
       </div>
       <div>
         <h4>Endereço</h4>
-        <p style="margin:0;">Av. Santos Dumont, 460-B<br>Lourdes, Gov. Valadares - MG, 35022-120</p>
+        <p style="margin:0;">Av. Santos Dumont, 460-B<br>Lourdes, Gov. Valadares — MG, 35022-120</p>
       </div>
       <div>
         <h4>Redes</h4>
@@ -423,16 +463,17 @@
   const mm = gsap.matchMedia();
 
   mm.add(
-    { desktop: '(min-width: 860px)', calmo: '(prefers-reduced-motion: reduce)' },
+    { desktop: '(min-width: 900px)', calmo: '(prefers-reduced-motion: reduce)' },
     (ctx) => {
-      const { calmo, desktop } = ctx.conditions;
+      const { calmo } = ctx.conditions;
 
+      // regra nº0: nada nasce invisível no CSS — o rio já renderiza inteiro sem JS.
       if (calmo) {
         gsap.utils.toArray('[data-reveal]').forEach((el) => {
-          gsap.from(el, { autoAlpha: 0, y: 12, duration: .5, ease: 'power1.out',
-            scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+          gsap.from(el, { autoAlpha: 0, y: 10, duration: .45, ease: 'power1.out',
+            scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
         });
-        return;
+        return; // versão calma: sem Lenis, sem scrub — rio aparece desenhado
       }
 
       const lenis = new Lenis();
@@ -441,29 +482,18 @@
       gsap.ticker.lagSmoothing(0);
 
       gsap.utils.toArray('[data-reveal]').forEach((el) => {
-        gsap.from(el, { y: 40, autoAlpha: 0, duration: .8, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+        gsap.from(el, { y: 32, autoAlpha: 0, duration: .8, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 87%', once: true } });
       });
 
-      gsap.from('.autoridade .container > *', { y: 24, autoAlpha: 0, duration: .6, stagger: .1, ease: 'power2.out',
-        scrollTrigger: { trigger: '.autoridade', start: 'top 80%', once: true } });
-
-      gsap.from('.dif-grid > *', { y: 32, autoAlpha: 0, duration: .6, stagger: .08, ease: 'power2.out',
-        scrollTrigger: { trigger: '.dif-grid', start: 'top 80%', once: true } });
-
-      // parallax sutil na marca d'água do herói
-      gsap.to('.hero-mark', { yPercent: -14, rotate: 6, ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-
-      if (desktop) {
-        // scroll horizontal pinado — o efeito forte da página (12 áreas de atuação)
-        const trilho = document.querySelector('.trilho');
-        gsap.to(trilho, { x: () => -(trilho.scrollWidth - innerWidth + 64), ease: 'none',
-          scrollTrigger: { trigger: '#cena-areas', start: 'top top',
-            end: () => '+=' + (trilho.scrollWidth - innerWidth + 64),
-            scrub: 1, pin: true, invalidateOnRefresh: true } });
+      // assinatura: o Rio Doce desenhado pelo scroll
+      const rio = document.getElementById('rio-path');
+      if (rio) {
+        const len = rio.getTotalLength();
+        gsap.set(rio, { strokeDasharray: len, strokeDashoffset: len });
+        gsap.to(rio, { strokeDashoffset: 0, ease: 'none',
+          scrollTrigger: { trigger: '.samarco', start: 'top 78%', end: 'center center', scrub: 1 } });
       }
-      // mobile: sem pin — o .trilho já é scroll horizontal nativo via CSS (overflow-x)
     }
   );
 </script>
