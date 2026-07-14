@@ -18,7 +18,7 @@
     --vinho: #8a1730;
     --ouro: #c9a24d;
     --texto-claro: #f1efe9;
-    --texto-suave-escuro: color-mix(in srgb, var(--tinta) 64%, var(--papel));
+    --texto-suave-escuro: color-mix(in srgb, var(--tinta) 72%, var(--papel));
     --texto-suave-claro: color-mix(in srgb, var(--texto-claro) 62%, var(--tinta-funda));
 
     --f-display: clamp(2.5rem, 5.2vw + 1rem, 4.6rem);
@@ -38,7 +38,7 @@
     font-family: 'Newsreader', serif; font-size: var(--f-corpo); line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3 { font-family: 'Newsreader', serif; font-weight: 500; margin: 0 0 var(--e-3); line-height: 1.12; }
+  h1, h2, h3 { font-family: 'Newsreader', serif; font-weight: 500; margin: 0 0 var(--e-3); line-height: 1.12; text-wrap: balance; }
   p { margin: 0 0 var(--e-3); }
   img { max-width: 100%; display: block; }
   a { color: inherit; }
@@ -48,14 +48,23 @@
 
   .display { font-size: var(--f-display); }
   .section-title { font-size: var(--f-titulo); }
+  /* kicker do sistema — usado SÓ onde carrega informação (índice, Samarco) */
   .eyebrow {
     display: block; font-family: 'Archivo', sans-serif; font-weight: 600;
-    font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+    font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
     margin-bottom: var(--e-3);
   }
   .dark .eyebrow { color: var(--ouro); }
   .light .eyebrow { color: var(--vinho); }
   em { font-style: italic; font-weight: 500; }
+
+  .skip-link {
+    position: absolute; left: -9999px; top: 0; z-index: 70;
+    background: var(--ouro); color: var(--tinta-funda);
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .9rem;
+    padding: 12px 20px; border-radius: 0 0 var(--raio) 0; text-decoration: none;
+  }
+  .skip-link:focus { left: 0; }
 
   .btn {
     display: inline-flex; align-items: center; gap: var(--e-1);
@@ -79,7 +88,7 @@
   nav { display: flex; align-items: center; justify-content: space-between; padding: 14px var(--e-4); max-width: 1120px; margin: 0 auto; }
   .logo img { height: 34px; width: auto; }
   .nav-links { display: flex; gap: var(--e-4); list-style: none; margin: 0; padding: 0; }
-  .nav-links a { text-decoration: none; font-family: 'Archivo', sans-serif; font-weight: 500; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: rgb(241 239 233 / .75); }
+  .nav-links a { display: inline-block; padding: 10px 2px; text-decoration: none; font-family: 'Archivo', sans-serif; font-weight: 500; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: rgb(241 239 233 / .78); }
   .nav-links a:hover { color: var(--ouro); }
   .nav-cta { display: none; }
   @media (min-width: 900px) { .nav-cta { display: inline-flex; padding: 10px 20px; font-size: .82rem; } }
@@ -99,6 +108,10 @@
   }
   @media (min-width: 900px) {
     .hero-texto { padding-left: max(var(--e-4), calc((100vw - 1120px) / 2)); padding-right: var(--e-8); }
+  }
+  .hero-byline {
+    font-family: 'Newsreader', serif; font-style: italic; font-size: 1.08rem;
+    color: var(--ouro); margin-bottom: var(--e-3);
   }
   .hero h1 { color: var(--texto-claro); font-size: var(--f-display); margin-bottom: var(--e-3); max-width: 13ch; }
   .hero h1 em { color: var(--ouro); }
@@ -121,7 +134,7 @@
   .carimbo {
     position: absolute; z-index: 2; left: -10px; bottom: 42px;
     transform: rotate(-3deg);
-    font-family: 'Archivo', sans-serif; font-weight: 700; font-size: .72rem;
+    font-family: 'Archivo', sans-serif; font-weight: 700; font-size: .76rem;
     letter-spacing: .14em; text-transform: uppercase;
     color: var(--ouro); border: 2px solid var(--ouro); border-radius: var(--raio);
     padding: 10px 16px; background: rgb(14 23 48 / .72); backdrop-filter: blur(4px);
@@ -133,8 +146,8 @@
   .ficha .container {
     display: flex; flex-wrap: wrap; gap: var(--e-2) var(--e-4);
     justify-content: center; align-items: baseline;
-    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .74rem;
-    letter-spacing: .16em; text-transform: uppercase; color: var(--texto-suave-escuro);
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .8rem;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--texto-suave-escuro);
   }
   .ficha .losango { color: var(--ouro); font-size: .6rem; }
 
@@ -142,26 +155,37 @@
   .areas { background: var(--papel); }
   .areas-head { max-width: 720px; margin-bottom: var(--e-8); }
   .indice { max-width: 860px; margin: 0 auto; list-style: none; padding: 0; }
-  .indice li { padding: var(--e-3) 0; border-bottom: 1px solid color-mix(in srgb, var(--tinta) 10%, var(--papel)); }
+  .indice li { border-bottom: 1px solid color-mix(in srgb, var(--tinta) 10%, var(--papel)); }
   .indice li:last-child { border-bottom: none; }
+  .indice-link { display: block; padding: var(--e-3) 0; text-decoration: none; }
   .indice-linha { display: flex; align-items: baseline; gap: var(--e-2); }
   .indice-num {
     font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .78rem;
     color: var(--vinho); min-width: 2ch; letter-spacing: .04em;
   }
-  .indice-titulo { font-size: 1.25rem; font-weight: 500; white-space: nowrap; }
+  .indice-titulo { font-size: 1.25rem; font-weight: 500; white-space: nowrap; transition: color var(--dur) var(--curva); }
+  .indice-link:hover .indice-titulo, .indice-link:focus-visible .indice-titulo { color: var(--vinho); }
   .indice-leader { flex: 1; border-bottom: 2px dotted color-mix(in srgb, var(--tinta) 26%, var(--papel)); transform: translateY(-5px); min-width: 24px; }
   .indice-chave {
-    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .68rem;
-    letter-spacing: .12em; text-transform: uppercase; color: var(--texto-suave-escuro);
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .78rem;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--texto-suave-escuro);
     text-align: right; white-space: nowrap;
   }
   .indice-desc { margin: 6px 0 0 calc(2ch + var(--e-2)); font-size: .98rem; color: var(--texto-suave-escuro); max-width: 62ch; }
-  @media (max-width: 640px) {
+  .indice-acao {
+    display: inline-block; margin: 8px 0 0 calc(2ch + var(--e-2));
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .78rem;
+    letter-spacing: .06em; color: var(--vinho);
+    opacity: 0; transform: translateX(-4px);
+    transition: opacity var(--dur) var(--curva), transform var(--dur) var(--curva);
+  }
+  .indice-link:hover .indice-acao, .indice-link:focus-visible .indice-acao { opacity: 1; transform: translateX(0); }
+  @media (max-width: 760px) {
     .indice-titulo { white-space: normal; font-size: 1.1rem; }
     .indice-chave { display: none; }
     .indice-leader { display: none; }
     .indice-desc { margin-left: calc(2ch + var(--e-2)); }
+    .indice-acao { opacity: 1; transform: none; } /* no toque não existe hover — a ação fica sempre visível */
   }
 
   /* ---------- SAMARCO / RIO DOCE ---------- */
@@ -172,8 +196,8 @@
   .rio { display: block; width: 100%; height: auto; margin: var(--e-6) 0; }
   .rio path { fill: none; stroke: var(--ouro); stroke-width: 2.5; stroke-linecap: round; }
   .rio-legenda {
-    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .68rem;
-    letter-spacing: .18em; text-transform: uppercase; color: color-mix(in srgb, var(--texto-claro) 65%, var(--vinho));
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .78rem;
+    letter-spacing: .16em; text-transform: uppercase; color: color-mix(in srgb, var(--texto-claro) 78%, var(--vinho));
     margin-top: calc(var(--e-2) * -1); margin-bottom: var(--e-4);
   }
   .samarco .btn.ghost { color: var(--texto-claro); border-color: color-mix(in srgb, var(--texto-claro) 55%, var(--vinho)); }
@@ -184,7 +208,7 @@
   @media (min-width: 760px) { .socios-grid { grid-template-columns: 1fr auto 1fr; } }
   .socio h3 { font-size: clamp(1.5rem, 2.4vw + .5rem, 2.2rem); margin-bottom: var(--e-1); }
   .socio .socio-role {
-    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .7rem;
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .74rem;
     letter-spacing: .16em; text-transform: uppercase; color: var(--vinho); margin-bottom: var(--e-2);
   }
   .socio p { color: var(--texto-suave-escuro); font-size: 1rem; margin: 0; max-width: 38ch; }
@@ -203,12 +227,18 @@
 
   /* ---------- DEPOIMENTOS ---------- */
   .prova { background: var(--papel); }
-  .prova-grid { display: grid; gap: var(--e-6); margin-top: var(--e-6); }
+  .prova-stars {
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .95rem;
+    color: var(--vinho); margin-bottom: var(--e-6);
+  }
+  .prova-stars .estrelas { color: var(--ouro); letter-spacing: 2px; }
+  .prova-grid { display: grid; gap: var(--e-6); }
   @media (min-width: 760px) { .prova-grid { grid-template-columns: 1fr 1fr; } }
-  .depoimento { font-size: 1.22rem; font-style: italic; line-height: 1.55; max-width: 44ch; }
-  .depoimento-autor {
-    display: block; margin-top: var(--e-3); font-style: normal;
-    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .72rem;
+  .depoimento { margin: 0; }
+  .depoimento blockquote { margin: 0; font-size: 1.22rem; font-style: italic; line-height: 1.55; max-width: 44ch; }
+  .depoimento figcaption {
+    margin-top: var(--e-3);
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .78rem;
     letter-spacing: .14em; text-transform: uppercase; color: var(--vinho);
   }
 
@@ -221,12 +251,12 @@
   footer { background: var(--tinta-funda); color: var(--texto-suave-claro); padding: var(--e-8) 0 var(--e-4); font-size: .92rem; border-top: 1px solid rgb(255 255 255 / .08); }
   footer .container { font-family: 'Archivo', sans-serif; }
   .footer-grid { display: grid; gap: var(--e-4); grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: var(--e-6); }
-  footer h4 { color: var(--texto-claro); font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; margin: 0 0 var(--e-2); font-weight: 600; }
-  footer p { font-size: .88rem; }
+  footer h3 { color: var(--texto-claro); font-family: 'Archivo', sans-serif; font-size: .74rem; text-transform: uppercase; letter-spacing: .14em; margin: 0 0 var(--e-2); font-weight: 600; }
+  footer p { font-size: .9rem; }
   footer a { text-decoration: none; }
   footer a:hover { color: var(--ouro); }
   .footer-logo { height: 40px; width: auto; margin-bottom: var(--e-4); }
-  .footer-bottom { border-top: 1px solid rgb(255 255 255 / .08); padding-top: var(--e-3); text-align: center; font-size: .74rem; letter-spacing: .06em; opacity: .6; }
+  .footer-bottom { border-top: 1px solid rgb(255 255 255 / .08); padding-top: var(--e-3); text-align: center; font-size: .76rem; letter-spacing: .06em; opacity: .7; }
 
   /* ---------- WHATSAPP FLUTUANTE ---------- */
   .whats-float {
@@ -252,36 +282,38 @@
 </head>
 <body>
 
+<a class="skip-link" href="#conteudo">Ir direto ao conteúdo</a>
+
 <header>
   <nav>
-    <a href="#topo" class="logo"><img src="img/logo-white.webp" alt="Siqueira &amp; Neves Advogados" width="700" height="248"></a>
+    <a href="#conteudo" class="logo"><img src="img/logo-white.webp" alt="Siqueira &amp; Neves Advogados" width="700" height="248"></a>
     <ul class="nav-links">
       <li><a href="#areas">Áreas</a></li>
       <li><a href="#samarco">Samarco</a></li>
       <li><a href="#escritorio">Escritório</a></li>
       <li><a href="#depoimentos">Depoimentos</a></li>
     </ul>
-    <a href="https://api.whatsapp.com/send?phone=553330224128" class="btn nav-cta" target="_blank" rel="noopener">Falar no WhatsApp</a>
+    <a href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20meu%20caso." class="btn nav-cta" target="_blank" rel="noopener">Falar no WhatsApp</a>
   </nav>
 </header>
 
-<main id="topo">
+<main id="conteudo" tabindex="-1">
 
   <!-- HERÓI -->
   <section class="hero dark" style="padding:0">
     <div class="hero-grid">
       <div class="hero-texto">
-        <span class="eyebrow" data-reveal>Advocacia · Governador Valadares · desde 2016</span>
+        <p class="hero-byline" data-reveal>Advocacia em Governador Valadares, desde 2016</p>
         <h1 data-reveal>Um mundo mais justo, <em>caso a caso.</em></h1>
-        <p class="lead" data-reveal>Escritório full-service com 10 anos de atuação — Família, Trabalhista, Previdenciário, Empresarial e indenizações Samarco/Rio Doce. À frente, os sócios Elias Siqueira Jr. e Mardson Neves.</p>
+        <p class="lead" data-reveal>Escritório com atuação completa e 10 anos de estrada: Família, Trabalhista, Previdenciário, Empresarial e indenizações Samarco/Rio Doce. À frente, os sócios Elias Siqueira Jr. e Mardson Neves.</p>
         <div class="hero-ctas" data-reveal>
-          <a href="https://api.whatsapp.com/send?phone=553330224128" class="btn" target="_blank" rel="noopener">Falar com um especialista</a>
-          <a href="#areas" class="btn ghost">Índice de áreas</a>
+          <a href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20meu%20caso." class="btn" target="_blank" rel="noopener">Falar com um especialista</a>
+          <a href="#areas" class="btn ghost">Ver as áreas de atuação</a>
         </div>
       </div>
       <div class="hero-foto">
         <img src="img/equipe.webp" alt="Equipe Siqueira &amp; Neves Advogados" width="562" height="1000" loading="eager" fetchpriority="high">
-        <div class="carimbo">★★★★★ 5,0 · Google</div>
+        <div class="carimbo" role="img" aria-label="Nota 5,0 no Google, avaliação máxima"><span aria-hidden="true">★★★★★</span> 5,0 · Google</div>
       </div>
     </div>
   </section>
@@ -289,9 +321,9 @@
   <!-- FICHA -->
   <div class="ficha light">
     <div class="container">
-      <span>Gov. Valadares — MG</span><span class="losango">◆</span>
-      <span>Desde 2016</span><span class="losango">◆</span>
-      <span>12 áreas do direito</span><span class="losango">◆</span>
+      <span>Gov. Valadares — MG</span><span class="losango" aria-hidden="true">◆</span>
+      <span>Desde 2016</span><span class="losango" aria-hidden="true">◆</span>
+      <span>12 áreas do direito</span><span class="losango" aria-hidden="true">◆</span>
       <span>Atendimento digital ou presencial</span>
     </div>
   </div>
@@ -302,57 +334,94 @@
       <div class="areas-head">
         <span class="eyebrow">Áreas de atuação — índice</span>
         <h2 class="section-title" data-reveal>Onde o Siqueira &amp; Neves atua por você</h2>
+        <p style="color:var(--texto-suave-escuro); max-width:56ch;">Achou o seu caso na lista? Toca nele e a conversa já começa no WhatsApp, com o assunto certo.</p>
       </div>
-      <ol class="indice">
+      <ul class="indice">
         <li data-reveal>
-          <div class="indice-linha"><span class="indice-num">01</span><span class="indice-titulo">Família e Inventário</span><span class="indice-leader"></span><span class="indice-chave">Divórcio · Guarda · Pensão</span></div>
-          <p class="indice-desc">Os momentos mais delicados conduzidos com cuidado — do acordo ao inventário.</p>
+          <a class="indice-link" href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20fam%C3%ADlia%20e%20invent%C3%A1rio." target="_blank" rel="noopener">
+            <span class="indice-linha"><span class="indice-num" aria-hidden="true">01</span><span class="indice-titulo">Família e Inventário</span><span class="indice-leader"></span><span class="indice-chave">Divórcio · Guarda · Pensão</span></span>
+            <span class="indice-desc">Os momentos mais delicados conduzidos com cuidado, do acordo ao inventário.</span>
+            <span class="indice-acao">Falar sobre isso no WhatsApp →</span>
+          </a>
         </li>
         <li data-reveal>
-          <div class="indice-linha"><span class="indice-num">02</span><span class="indice-titulo">Trabalhista</span><span class="indice-leader"></span><span class="indice-chave">CLT · Rescisão · Verbas</span></div>
-          <p class="indice-desc">Defesa de direitos trabalhistas, para empregado ou empregador.</p>
+          <a class="indice-link" href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20direito%20trabalhista." target="_blank" rel="noopener">
+            <span class="indice-linha"><span class="indice-num" aria-hidden="true">02</span><span class="indice-titulo">Trabalhista</span><span class="indice-leader"></span><span class="indice-chave">CLT · Rescisão · Verbas</span></span>
+            <span class="indice-desc">Defesa de direitos trabalhistas, para empregado ou empregador.</span>
+            <span class="indice-acao">Falar sobre isso no WhatsApp →</span>
+          </a>
         </li>
         <li data-reveal>
-          <div class="indice-linha"><span class="indice-num">03</span><span class="indice-titulo">Previdenciário</span><span class="indice-leader"></span><span class="indice-chave">INSS · Aposentadoria</span></div>
-          <p class="indice-desc">Aposentadoria, desaposentação e benefícios junto ao INSS.</p>
+          <a class="indice-link" href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20aposentadoria%20e%20INSS." target="_blank" rel="noopener">
+            <span class="indice-linha"><span class="indice-num" aria-hidden="true">03</span><span class="indice-titulo">Previdenciário</span><span class="indice-leader"></span><span class="indice-chave">INSS · Aposentadoria</span></span>
+            <span class="indice-desc">Aposentadoria, revisão e benefícios junto ao INSS.</span>
+            <span class="indice-acao">Falar sobre isso no WhatsApp →</span>
+          </a>
         </li>
         <li data-reveal>
-          <div class="indice-linha"><span class="indice-num">04</span><span class="indice-titulo">Empresarial e Societário</span><span class="indice-leader"></span><span class="indice-chave">Contratos · Auditoria</span></div>
-          <p class="indice-desc">Assessoria preventiva e estratégica para empresários e sociedades.</p>
+          <a class="indice-link" href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20direito%20empresarial." target="_blank" rel="noopener">
+            <span class="indice-linha"><span class="indice-num" aria-hidden="true">04</span><span class="indice-titulo">Empresarial e Societário</span><span class="indice-leader"></span><span class="indice-chave">Contratos · Auditoria</span></span>
+            <span class="indice-desc">Assessoria preventiva e estratégica para empresários e sociedades.</span>
+            <span class="indice-acao">Falar sobre isso no WhatsApp →</span>
+          </a>
         </li>
         <li data-reveal>
-          <div class="indice-linha"><span class="indice-num">05</span><span class="indice-titulo">Consumidor</span><span class="indice-leader"></span><span class="indice-chave">Cobrança indevida</span></div>
-          <p class="indice-desc">Produto com defeito, cobrança indevida e relações de consumo em geral.</p>
+          <a class="indice-link" href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20direito%20do%20consumidor." target="_blank" rel="noopener">
+            <span class="indice-linha"><span class="indice-num" aria-hidden="true">05</span><span class="indice-titulo">Consumidor</span><span class="indice-leader"></span><span class="indice-chave">Cobrança indevida</span></span>
+            <span class="indice-desc">Produto com defeito, cobrança indevida e relações de consumo em geral.</span>
+            <span class="indice-acao">Falar sobre isso no WhatsApp →</span>
+          </a>
         </li>
         <li data-reveal>
-          <div class="indice-linha"><span class="indice-num">06</span><span class="indice-titulo">Saúde e Direito Médico</span><span class="indice-leader"></span><span class="indice-chave">Planos de saúde</span></div>
-          <p class="indice-desc">Questões com planos de saúde e responsabilidade médica.</p>
+          <a class="indice-link" href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20plano%20de%20sa%C3%BAde%20ou%20direito%20m%C3%A9dico." target="_blank" rel="noopener">
+            <span class="indice-linha"><span class="indice-num" aria-hidden="true">06</span><span class="indice-titulo">Saúde e Direito Médico</span><span class="indice-leader"></span><span class="indice-chave">Planos de saúde</span></span>
+            <span class="indice-desc">Questões com planos de saúde e responsabilidade médica.</span>
+            <span class="indice-acao">Falar sobre isso no WhatsApp →</span>
+          </a>
         </li>
         <li data-reveal>
-          <div class="indice-linha"><span class="indice-num">07</span><span class="indice-titulo">Imobiliário</span><span class="indice-leader"></span><span class="indice-chave">Compra · Regularização</span></div>
-          <p class="indice-desc">Compra, venda, regularização e disputas envolvendo imóveis.</p>
+          <a class="indice-link" href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20direito%20imobili%C3%A1rio." target="_blank" rel="noopener">
+            <span class="indice-linha"><span class="indice-num" aria-hidden="true">07</span><span class="indice-titulo">Imobiliário</span><span class="indice-leader"></span><span class="indice-chave">Compra · Regularização</span></span>
+            <span class="indice-desc">Compra, venda, regularização e disputas envolvendo imóveis.</span>
+            <span class="indice-acao">Falar sobre isso no WhatsApp →</span>
+          </a>
         </li>
         <li data-reveal>
-          <div class="indice-linha"><span class="indice-num">08</span><span class="indice-titulo">Recuperação de Crédito</span><span class="indice-leader"></span><span class="indice-chave">Cobrança judicial</span></div>
-          <p class="indice-desc">Cobrança judicial e extrajudicial de valores devidos.</p>
+          <a class="indice-link" href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20recupera%C3%A7%C3%A3o%20de%20cr%C3%A9dito." target="_blank" rel="noopener">
+            <span class="indice-linha"><span class="indice-num" aria-hidden="true">08</span><span class="indice-titulo">Recuperação de Crédito</span><span class="indice-leader"></span><span class="indice-chave">Cobrança de dívidas</span></span>
+            <span class="indice-desc">Cobrança de valores devidos, na justiça ou por acordo.</span>
+            <span class="indice-acao">Falar sobre isso no WhatsApp →</span>
+          </a>
         </li>
         <li data-reveal>
-          <div class="indice-linha"><span class="indice-num">09</span><span class="indice-titulo">Bancário</span><span class="indice-leader"></span><span class="indice-chave">Revisão de contratos</span></div>
-          <p class="indice-desc">Revisão de contratos e questões com instituições financeiras.</p>
+          <a class="indice-link" href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20direito%20banc%C3%A1rio." target="_blank" rel="noopener">
+            <span class="indice-linha"><span class="indice-num" aria-hidden="true">09</span><span class="indice-titulo">Bancário</span><span class="indice-leader"></span><span class="indice-chave">Revisão de contratos</span></span>
+            <span class="indice-desc">Revisão de contratos e questões com bancos e financeiras.</span>
+            <span class="indice-acao">Falar sobre isso no WhatsApp →</span>
+          </a>
         </li>
         <li data-reveal>
-          <div class="indice-linha"><span class="indice-num">10</span><span class="indice-titulo">Trânsito</span><span class="indice-leader"></span><span class="indice-chave">CNH · Multas</span></div>
-          <p class="indice-desc">Suspensão de CNH, multas e infrações de trânsito.</p>
+          <a class="indice-link" href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20CNH%20ou%20multas." target="_blank" rel="noopener">
+            <span class="indice-linha"><span class="indice-num" aria-hidden="true">10</span><span class="indice-titulo">Trânsito</span><span class="indice-leader"></span><span class="indice-chave">CNH · Multas</span></span>
+            <span class="indice-desc">Suspensão de CNH, multas e infrações de trânsito.</span>
+            <span class="indice-acao">Falar sobre isso no WhatsApp →</span>
+          </a>
         </li>
         <li data-reveal>
-          <div class="indice-linha"><span class="indice-num">11</span><span class="indice-titulo">Administrativo</span><span class="indice-leader"></span><span class="indice-chave">Servidor público</span></div>
-          <p class="indice-desc">Questões envolvendo servidores públicos e a administração pública.</p>
+          <a class="indice-link" href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20direito%20administrativo." target="_blank" rel="noopener">
+            <span class="indice-linha"><span class="indice-num" aria-hidden="true">11</span><span class="indice-titulo">Administrativo</span><span class="indice-leader"></span><span class="indice-chave">Servidor público</span></span>
+            <span class="indice-desc">Questões envolvendo servidores públicos e a administração pública.</span>
+            <span class="indice-acao">Falar sobre isso no WhatsApp →</span>
+          </a>
         </li>
         <li data-reveal>
-          <div class="indice-linha"><span class="indice-num">12</span><span class="indice-titulo">Indenizações Samarco / Rio Doce</span><span class="indice-leader"></span><span class="indice-chave">Atingidos · PID</span></div>
-          <p class="indice-desc">Atuação especializada junto aos atingidos do desastre do Rio Doce — detalhes abaixo.</p>
+          <a class="indice-link" href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20indeniza%C3%A7%C3%A3o%20Samarco%2FRio%20Doce." target="_blank" rel="noopener">
+            <span class="indice-linha"><span class="indice-num" aria-hidden="true">12</span><span class="indice-titulo">Indenizações Samarco / Rio Doce</span><span class="indice-leader"></span><span class="indice-chave">Atingidos · Indenização</span></span>
+            <span class="indice-desc">Atuação especializada junto aos atingidos do desastre do Rio Doce (detalhes abaixo).</span>
+            <span class="indice-acao">Falar sobre isso no WhatsApp →</span>
+          </a>
         </li>
-      </ol>
+      </ul>
     </div>
   </section>
 
@@ -365,33 +434,32 @@
         <path id="rio-path" d="M0,52 C60,20 110,68 180,48 C250,28 290,64 360,44 C430,24 470,66 540,46 C610,26 650,60 720,42 C760,32 780,40 800,36"/>
       </svg>
       <p class="rio-legenda">Rio Doce — Governador Valadares, MG</p>
-      <p data-reveal>Atuamos junto a famílias e trabalhadores da região atingidos pelo desastre de Mariana, orientando sobre o direito à indenização e acompanhando cada etapa — do cadastro no programa ao recebimento.</p>
-      <a href="https://api.whatsapp.com/send?phone=553330224128" class="btn ghost" target="_blank" rel="noopener" data-reveal>Falar sobre meu caso</a>
+      <p data-reveal>Atuamos junto a famílias e trabalhadores da região atingidos pelo desastre de Mariana, orientando sobre o direito à indenização e acompanhando cada etapa, do cadastro no programa ao recebimento.</p>
+      <a href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20indeniza%C3%A7%C3%A3o%20Samarco%2FRio%20Doce." class="btn ghost" target="_blank" rel="noopener" data-reveal>Falar sobre meu caso</a>
     </div>
   </section>
 
   <!-- ESCRITÓRIO & SÓCIOS -->
   <section class="escritorio light" id="escritorio">
     <div class="container">
-      <span class="eyebrow">O escritório</span>
       <h2 class="section-title" data-reveal>Dois sócios fundadores. Uma banca inteira por trás.</h2>
       <div class="socios-grid">
         <div class="socio dir" data-reveal>
-          <div class="socio-role">Sócio fundador</div>
+          <div class="socio-role">Sócio diretor</div>
           <h3>Elias Siqueira Jr.</h3>
-          <p>Advogado com ampla experiência, à frente das estratégias jurídicas do escritório.</p>
+          <p>À frente da direção e da estratégia jurídica do escritório. "Protejo seus direitos" é o lema que ele carrega.</p>
         </div>
         <div class="e-comercial" aria-hidden="true">&amp;</div>
         <div class="socio" data-reveal>
           <div class="socio-role">Sócio fundador</div>
           <h3>Mardson Neves</h3>
-          <p>Advogado com ampla experiência, condução próxima de cada cliente e cada caso.</p>
+          <p>Condução próxima de cada cliente e cada caso, do primeiro atendimento até o fim do processo.</p>
         </div>
       </div>
       <ul class="dif-lista">
-        <li data-reveal><span class="losango">◆</span><span><strong>Atendimento personalizado.</strong> Proximidade com o cliente, respeitando as peculiaridades de cada caso.</span></li>
-        <li data-reveal><span class="losango">◆</span><span><strong>Digital ou presencial.</strong> Sede física em Governador Valadares — e atendimento inteiro pelo celular, se você preferir.</span></li>
-        <li data-reveal><span class="losango">◆</span><span><strong>Equipe especializada.</strong> Advogados com anos de atuação nas mais diversas áreas do direito.</span></li>
+        <li data-reveal><span class="losango" aria-hidden="true">◆</span><span><strong>Atendimento personalizado.</strong> Proximidade com o cliente, respeitando as peculiaridades de cada caso.</span></li>
+        <li data-reveal><span class="losango" aria-hidden="true">◆</span><span><strong>Digital ou presencial.</strong> Sede física em Governador Valadares, e atendimento inteiro pelo celular se você preferir.</span></li>
+        <li data-reveal><span class="losango" aria-hidden="true">◆</span><span><strong>Equipe especializada.</strong> Advogados com anos de atuação nas mais diversas áreas do direito.</span></li>
       </ul>
     </div>
   </section>
@@ -399,16 +467,17 @@
   <!-- DEPOIMENTOS -->
   <section class="prova light" id="depoimentos">
     <div class="container">
-      <span class="eyebrow">O que dizem — avaliações Google · 5,0 ★</span>
+      <h2 class="section-title" data-reveal>O que dizem no Google</h2>
+      <p class="prova-stars"><span class="estrelas" aria-hidden="true">★★★★★</span> Nota 5,0 em avaliações reais de clientes</p>
       <div class="prova-grid">
-        <blockquote class="depoimento" data-reveal>
-          "Um escritório de profissionais que tratam clientes com seriedade e compromisso, e buscam solucionar os processos de maneira assertiva e competente."
-          <span class="depoimento-autor">— Daniele Dutra</span>
-        </blockquote>
-        <blockquote class="depoimento" data-reveal>
-          "Excelentes advogados. Profissionais pontuais com os seus prazos, valor justo, e excelente atendimento começando pela recepção. Indico a todos."
-          <span class="depoimento-autor">— Lucilene Alves de Souza Vargas</span>
-        </blockquote>
+        <figure class="depoimento" data-reveal>
+          <blockquote>"Um escritório de profissionais que tratam clientes com seriedade e compromisso, e buscam solucionar os processos de maneira assertiva e competente."</blockquote>
+          <figcaption>— Daniele Dutra</figcaption>
+        </figure>
+        <figure class="depoimento" data-reveal>
+          <blockquote>"Excelentes advogados. Profissionais pontuais com os seus prazos, valor justo, e excelente atendimento começando pela recepção. Indico a todos."</blockquote>
+          <figcaption>— Lucilene Alves de Souza Vargas</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -416,10 +485,9 @@
   <!-- CTA FINAL -->
   <section class="cta-final dark">
     <div class="container">
-      <span class="eyebrow">Fale conosco</span>
       <h2 class="section-title" data-reveal>Precisa resolver algo com a Justiça?</h2>
-      <p data-reveal>Fale agora com o Siqueira &amp; Neves e entenda, sem compromisso, qual é o melhor caminho para o seu caso.</p>
-      <a href="https://api.whatsapp.com/send?phone=553330224128" class="btn" target="_blank" rel="noopener" data-reveal>Falar no WhatsApp</a>
+      <p data-reveal>Fale agora com o Siqueira &amp; Neves e entenda, sem compromisso, qual é o melhor caminho para o seu caso. Se preferir ligar: <a href="tel:+553330224128" style="color:var(--ouro); text-decoration:underline;">(33) 3022-4128</a>.</p>
+      <a href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20meu%20caso." class="btn" target="_blank" rel="noopener" data-reveal>Falar no WhatsApp</a>
     </div>
   </section>
 
@@ -430,20 +498,21 @@
     <img class="footer-logo" src="img/logo-white.webp" alt="Siqueira &amp; Neves Advogados" width="700" height="248" loading="lazy">
     <div class="footer-grid">
       <div>
-        <h4>Escritório</h4>
+        <h3>Escritório</h3>
         <p style="margin:0;">Siqueira &amp; Neves Advogados<br>Governador Valadares — MG · desde 2016</p>
       </div>
       <div>
-        <h4>Contato</h4>
-        <p style="margin:0;"><a href="https://api.whatsapp.com/send?phone=553330224128" target="_blank" rel="noopener">(33) 3022-4128 — WhatsApp</a></p>
+        <h3>Contato</h3>
+        <p style="margin:0;"><a href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20meu%20caso." target="_blank" rel="noopener">(33) 3022-4128 — WhatsApp</a></p>
+        <p style="margin:8px 0 0;"><a href="tel:+553330224128">(33) 3022-4128 — ligar</a></p>
         <p style="margin:8px 0 0;"><a href="mailto:siqueiraeneves@hotmail.com">siqueiraeneves@hotmail.com</a></p>
       </div>
       <div>
-        <h4>Endereço</h4>
+        <h3>Endereço</h3>
         <p style="margin:0;">Av. Santos Dumont, 460-B<br>Lourdes, Gov. Valadares — MG, 35022-120</p>
       </div>
       <div>
-        <h4>Redes</h4>
+        <h3>Redes</h3>
         <p style="margin:0;"><a href="https://www.instagram.com/siqueiraenevesadvogados/" target="_blank" rel="noopener">@siqueiraenevesadvogados</a></p>
       </div>
     </div>
@@ -451,8 +520,8 @@
   </div>
 </footer>
 
-<a href="https://api.whatsapp.com/send?phone=553330224128" class="whats-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 3.5a8.9 8.9 0 0 0-7.6 13.48L3.5 21l4.15-1.09a8.9 8.9 0 0 0 4.4 1.16h.01a8.9 8.9 0 0 0 8.9-8.9 8.86 8.86 0 0 0-2.86-6.35zm-5.55 13.7h-.01a7.4 7.4 0 0 1-3.77-1.03l-.27-.16-2.8.74.75-2.73-.18-.28a7.4 7.4 0 1 1 13.75-3.86 7.4 7.4 0 0 1-7.47 7.32zm4.06-5.54c-.22-.11-1.31-.65-1.51-.72-.2-.07-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.16-.48.05-.22-.11-.94-.35-1.79-1.11-.66-.59-1.11-1.32-1.24-1.54-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.2-.68-1.65-.18-.43-.36-.37-.5-.38-.13-.01-.28-.01-.43-.01a.83.83 0 0 0-.6.28c-.2.22-.79.77-.79 1.87 0 1.1.81 2.17.92 2.32.11.15 1.6 2.44 3.87 3.42.54.23.96.37 1.29.48.54.17 1.03.15 1.42.09.43-.06 1.31-.53 1.5-1.05.18-.51.18-.95.13-1.05-.05-.1-.2-.15-.42-.26z"/></svg>
+<a href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20meu%20caso." class="whats-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp — abre uma conversa">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 3.5a8.9 8.9 0 0 0-7.6 13.48L3.5 21l4.15-1.09a8.9 8.9 0 0 0 4.4 1.16h.01a8.9 8.9 0 0 0 8.9-8.9 8.86 8.86 0 0 0-2.86-6.35zm-5.55 13.7h-.01a7.4 7.4 0 0 1-3.77-1.03l-.27-.16-2.8.74.75-2.73-.18-.28a7.4 7.4 0 1 1 13.75-3.86 7.4 7.4 0 0 1-7.47 7.32zm4.06-5.54c-.22-.11-1.31-.65-1.51-.72-.2-.07-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.16-.48.05-.22-.11-.94-.35-1.79-1.11-.66-.59-1.11-1.32-1.24-1.54-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.2-.68-1.65-.18-.43-.36-.37-.5-.38-.13-.01-.28-.01-.43-.01a.83.83 0 0 0-.6.28c-.2.22-.79.77-.79 1.87 0 1.1.81 2.17.92 2.32.11.15 1.6 2.44 3.87 3.42.54.23.96.37 1.29.48.54.17 1.03.15 1.42.09.43-.06 1.31-.53 1.5-1.05.18-.51.18-.95.13-1.05-.05-.1-.2-.15-.42-.26z"/></svg>
 </a>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
@@ -476,7 +545,7 @@
         return; // versão calma: sem Lenis, sem scrub — rio aparece desenhado
       }
 
-      const lenis = new Lenis();
+      const lenis = new Lenis({ anchors: true });
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add((t) => lenis.raf(t * 1000));
       gsap.ticker.lagSmoothing(0);
