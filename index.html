@@ -128,52 +128,51 @@
   @media (min-width: 900px) { .nav-cta { display: inline-flex; padding: 10px 20px; font-size: .82rem; } }
   @media (max-width: 899px) { .nav-links { display: none; } }
 
-  /* ---------- HERO ---------- */
+  /* ---------- HERO — foto da banca em tela cheia, texto por cima ---------- */
   .hero {
-    min-height: 100svh; display: grid; align-items: stretch;
+    position: relative; min-height: 100svh;
+    display: flex; align-items: flex-end;
     padding: 0; overflow: hidden;
     background: var(--tinta-funda); color: var(--texto-claro);
   }
-  .hero-grid { display: grid; min-height: 100svh; }
-  @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.08fr .92fr; } }
-  .hero-texto {
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 140px var(--e-4) var(--e-8);
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .hero-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgb(14 23 48 / .5) 0%, transparent 22%),
+      linear-gradient(180deg, transparent 30%, rgb(14 23 48 / .55) 62%, rgb(14 23 48 / .95) 100%);
   }
-  @media (min-width: 900px) {
-    .hero-texto { padding-left: max(var(--e-4), calc((100vw - 1120px) / 2)); padding-right: var(--e-8); }
+  .hero-texto {
+    position: relative; z-index: 2; width: 100%;
+    max-width: 1120px; margin: 0 auto;
+    padding: 160px var(--e-4) var(--e-10, 80px);
+    text-shadow: 0 1px 2px rgb(0 0 0 / .5), 0 2px 20px rgb(0 0 0 / .35);
   }
   .hero-byline {
     font-family: 'Newsreader', serif; font-style: italic; font-size: 1.08rem;
-    color: var(--ouro); margin-bottom: var(--e-3);
+    color: var(--ouro); margin-bottom: var(--e-2);
   }
-  .hero h1 { color: var(--texto-claro); font-size: var(--f-display); margin-bottom: var(--e-3); max-width: 13ch; }
+  .hero h1 { color: var(--texto-claro); font-size: var(--f-display); margin-bottom: var(--e-3); max-width: 15ch; }
   .hero h1 em { color: var(--ouro); }
-  .hero .lead { font-size: 1.15rem; max-width: 46ch; color: var(--texto-suave-claro); }
+  .hero .lead { font-size: 1.15rem; max-width: 52ch; color: color-mix(in srgb, var(--texto-claro) 85%, var(--tinta-funda)); }
   .hero-ctas { display: flex; gap: var(--e-2); flex-wrap: wrap; margin-top: var(--e-4); }
-
-  .hero-foto { position: relative; min-height: 46svh; }
-  .hero-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-  .hero-foto::before {
-    content: ''; position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(90deg, var(--tinta-funda) 0%, transparent 22%),
-                linear-gradient(0deg, rgb(14 23 48 / .55) 0%, transparent 30%);
-  }
+  .hero-ctas .btn { text-shadow: none; }
   @media (max-width: 899px) {
-    .hero-foto { order: 2; min-height: 52svh; }
-    .hero-foto::before { background: linear-gradient(0deg, var(--tinta-funda) 0%, transparent 24%); }
+    .hero-bg img { object-position: 62% top; }
+    .hero-texto { padding-top: 46svh; padding-bottom: var(--e-6); }
   }
 
   /* carimbo — 5 estrelas Google */
   .carimbo {
-    position: absolute; z-index: 2; left: -10px; bottom: 42px;
-    transform: rotate(-3deg);
+    position: absolute; z-index: 2; right: var(--e-4); top: 110px;
+    transform: rotate(3deg);
     font-family: 'Archivo', sans-serif; font-weight: 700; font-size: .76rem;
     letter-spacing: .14em; text-transform: uppercase;
     color: var(--ouro); border: 2px solid var(--ouro); border-radius: var(--raio);
     padding: 10px 16px; background: rgb(14 23 48 / .72); backdrop-filter: blur(4px);
   }
-  @media (max-width: 899px) { .carimbo { left: var(--e-3); bottom: var(--e-3); } }
+  @media (max-width: 899px) { .carimbo { right: var(--e-3); top: 92px; } }
 
   /* ---------- LINHA DE CABEÇALHO (dados do escritório) ---------- */
   .ficha { background: var(--papel); padding: var(--e-4) 0; border-bottom: 1px solid color-mix(in srgb, var(--tinta) 14%, var(--papel)); }
@@ -253,13 +252,6 @@
     font-family: 'Newsreader', serif; font-style: italic; font-weight: 400;
     font-size: clamp(5rem, 12vw, 9rem); line-height: 1; color: var(--ouro);
     text-align: center; user-select: none;
-  }
-  .banca-foto { margin: var(--e-8) 0 0; }
-  .banca-foto img { width: 100%; height: auto; border-radius: var(--raio); }
-  .banca-foto figcaption {
-    margin-top: var(--e-2);
-    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .78rem;
-    letter-spacing: .14em; text-transform: uppercase; color: var(--texto-suave-escuro);
   }
   .dif-lista { list-style: none; padding: 0; margin: var(--e-6) 0 0; max-width: 640px; }
   .dif-lista li { display: flex; gap: var(--e-2); align-items: baseline; padding: var(--e-2) 0; font-size: 1.05rem; }
@@ -347,19 +339,17 @@
 
   <!-- HERÓI -->
   <section class="hero dark" style="padding:0">
-    <div class="hero-grid">
-      <div class="hero-texto">
-        <p class="hero-byline" data-reveal>Advocacia em Governador Valadares, desde 2016</p>
-        <h1 data-reveal>Um mundo mais justo, <em>caso a caso.</em></h1>
-        <p class="lead" data-reveal>Escritório com atuação completa e 10 anos de estrada: Família, Trabalhista, Previdenciário, Empresarial e indenizações Samarco/Rio Doce. À frente, os sócios Elias Siqueira Jr. e Mardson Neves.</p>
-        <div class="hero-ctas" data-reveal>
-          <a href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20meu%20caso." class="btn" target="_blank" rel="noopener">Falar com um especialista</a>
-          <a href="#areas" class="btn ghost">Ver as áreas de atuação</a>
-        </div>
-      </div>
-      <div class="hero-foto">
-        <img src="img/equipe.webp" alt="Equipe Siqueira &amp; Neves Advogados" width="562" height="1000" loading="eager" fetchpriority="high">
-        <div class="carimbo" role="img" aria-label="Nota 5,0 no Google, avaliação máxima"><span aria-hidden="true">★★★★★</span> 5,0 · Google</div>
+    <div class="hero-bg">
+      <img src="img/equipe-hero.webp" alt="Equipe do Siqueira &amp; Neves Advogados em retrato oficial" width="1800" height="1013" loading="eager" fetchpriority="high">
+    </div>
+    <div class="carimbo" role="img" aria-label="Nota 5,0 no Google, avaliação máxima"><span aria-hidden="true">★★★★★</span> 5,0 · Google</div>
+    <div class="hero-texto">
+      <p class="hero-byline" data-reveal>Advocacia em Governador Valadares, desde 2016</p>
+      <h1 data-reveal>Um mundo mais justo, <em>caso a caso.</em></h1>
+      <p class="lead" data-reveal>Escritório com atuação completa e 10 anos de estrada: Família, Trabalhista, Previdenciário, Empresarial e indenizações Samarco/Rio Doce. À frente, os sócios Elias Siqueira Jr. e Mardson Neves.</p>
+      <div class="hero-ctas" data-reveal>
+        <a href="https://api.whatsapp.com/send?phone=553330224128&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20meu%20caso." class="btn" target="_blank" rel="noopener">Falar com um especialista</a>
+        <a href="#areas" class="btn ghost">Ver as áreas de atuação</a>
       </div>
     </div>
   </section>
@@ -502,10 +492,6 @@
           <p>Condução próxima de cada cliente e cada caso, do primeiro atendimento até o fim do processo.</p>
         </div>
       </div>
-      <figure class="banca-foto" data-reveal>
-        <img src="img/equipe-full.webp" alt="Equipe completa do Siqueira &amp; Neves Advogados em retrato oficial" width="1400" height="788" loading="lazy">
-        <figcaption>A banca do Siqueira &amp; Neves — Governador Valadares, MG</figcaption>
-      </figure>
       <ul class="dif-lista">
         <li data-reveal><span class="losango" aria-hidden="true">◆</span><span><strong>Atendimento personalizado.</strong> Proximidade com o cliente, respeitando as peculiaridades de cada caso.</span></li>
         <li data-reveal><span class="losango" aria-hidden="true">◆</span><span><strong>Digital ou presencial.</strong> Sede física em Governador Valadares, e atendimento inteiro pelo celular se você preferir.</span></li>
