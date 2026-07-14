@@ -586,14 +586,21 @@
     (ctx) => {
       const { desktop, mobile, calmo } = ctx.conditions;
 
+      // primeira dobra anima na ENTRADA, nunca por scroll — CTA não pode nascer escondido
+      const heroEls = gsap.utils.toArray('.hero [data-reveal]');
+      const scrollEls = gsap.utils.toArray('[data-reveal]').filter((el) => !el.closest('.hero'));
+
       // regra nº0: nada nasce invisível no CSS — o rio já renderiza inteiro sem JS.
       if (calmo) {
-        gsap.utils.toArray('[data-reveal]').forEach((el) => {
+        gsap.from(heroEls, { autoAlpha: 0, duration: .5, ease: 'power1.out' });
+        scrollEls.forEach((el) => {
           gsap.from(el, { autoAlpha: 0, y: 10, duration: .45, ease: 'power1.out',
             scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
         });
         return; // versão calma: sem Lenis, sem scrub — rio aparece desenhado
       }
+
+      gsap.from(heroEls, { y: 26, autoAlpha: 0, duration: .8, stagger: .12, delay: .1, ease: 'power3.out' });
 
       if (desktop) {
         const lenis = new Lenis({ anchors: true });
@@ -601,7 +608,7 @@
         gsap.ticker.add((t) => lenis.raf(t * 1000));
         gsap.ticker.lagSmoothing(0);
 
-        gsap.utils.toArray('[data-reveal]').forEach((el) => {
+        scrollEls.forEach((el) => {
           gsap.from(el, { y: 32, autoAlpha: 0, duration: .8, ease: 'power3.out',
             scrollTrigger: { trigger: el, start: 'top 87%', once: true } });
         });
@@ -610,7 +617,7 @@
 
       if (mobile) {
         // sem Lenis no toque (scroll nativo é melhor); reveals mais curtos, rio desenha mais cedo
-        gsap.utils.toArray('[data-reveal]').forEach((el) => {
+        scrollEls.forEach((el) => {
           gsap.from(el, { y: 20, autoAlpha: 0, duration: .55, ease: 'power2.out',
             scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
         });
