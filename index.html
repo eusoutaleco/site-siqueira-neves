@@ -254,6 +254,13 @@
     font-size: clamp(5rem, 12vw, 9rem); line-height: 1; color: var(--ouro);
     text-align: center; user-select: none;
   }
+  .banca-foto { margin: var(--e-8) 0 0; }
+  .banca-foto img { width: 100%; height: auto; border-radius: var(--raio); }
+  .banca-foto figcaption {
+    margin-top: var(--e-2);
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: .78rem;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--texto-suave-escuro);
+  }
   .dif-lista { list-style: none; padding: 0; margin: var(--e-6) 0 0; max-width: 640px; }
   .dif-lista li { display: flex; gap: var(--e-2); align-items: baseline; padding: var(--e-2) 0; font-size: 1.05rem; }
   .dif-lista .losango { color: var(--ouro); font-size: .7rem; flex: none; }
@@ -495,6 +502,10 @@
           <p>Condução próxima de cada cliente e cada caso, do primeiro atendimento até o fim do processo.</p>
         </div>
       </div>
+      <figure class="banca-foto" data-reveal>
+        <img src="img/equipe-full.webp" alt="Equipe completa do Siqueira &amp; Neves Advogados em retrato oficial" width="1400" height="788" loading="lazy">
+        <figcaption>A banca do Siqueira &amp; Neves — Governador Valadares, MG</figcaption>
+      </figure>
       <ul class="dif-lista">
         <li data-reveal><span class="losango" aria-hidden="true">◆</span><span><strong>Atendimento personalizado.</strong> Proximidade com o cliente, respeitando as peculiaridades de cada caso.</span></li>
         <li data-reveal><span class="losango" aria-hidden="true">◆</span><span><strong>Digital ou presencial.</strong> Sede física em Governador Valadares, e atendimento inteiro pelo celular se você preferir.</span></li>
